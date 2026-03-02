@@ -59,7 +59,7 @@ export default {
       }
 
       // Build email content
-    const emailSubject = `EpicVIN Site – New ${searchType === 'vin' ? 'VIN' : 'Plate'} Request`;
+    const emailSubject = `WheelStory Site – New ${searchType === 'vin' ? 'VIN' : 'Plate'} Request`;
 
       
     let emailBody = `
@@ -146,7 +146,7 @@ export default {
     <div class="card">
 
       <div class="top-bar">
-        <h1>Epicvin Site Entry</h1>
+        <h1>WheelStory Site Entry</h1>
         <div class="sub">New submission received</div>
       </div>
 
@@ -216,7 +216,7 @@ emailBody += `
       </div>
 
       <div class="footer">
-        This email was automatically generated from the <strong>EpicVIN Site</strong>.<br>
+        This email was automatically generated from the <strong>WheelStory Site</strong>.<br>
         Please do not reply to this message.
       </div>
 
@@ -233,7 +233,7 @@ emailBody += `
       const formData = new FormData();
       formData.append('access_key', '8a31cfe9-5cd5-4f84-8f73-3fe00c6753e2');
       formData.append('subject', emailSubject);
-      formData.append('from_name', 'EpicVIN Report');
+      formData.append('from_name', 'WheelStory Report');
       formData.append('to', 'car.check.store@gmail.com');
       formData.append('message', emailBody);
       
@@ -299,3 +299,4 @@ emailBody += `
     }
   },
 };
+
