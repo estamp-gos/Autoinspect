@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Auto Vehicle Report</title>
+    <meta name="description" content="Get in touch with Auto Vehicle Report for help with vehicle history reports.">
+    <link rel="stylesheet" href="css/avr-site.css">
+</head>
+
+<body class="avr-redesign">
+    <div id="app">
+        <div class="avr-header-wrap">
+            <header class="avr-header">
+                <div class="avr-container avr-header__inner">
+                    <a href="/" class="avr-logo">
+                        <span class="avr-logo__icon" aria-hidden="true"></span>
+                        <span class="avr-logo__text">Auto Vehicle Report</span>
+                    </a>
+                    <button type="button" class="avr-nav-toggle" id="avrNavToggle" aria-expanded="false"
+                        aria-controls="avrNavDrawer" aria-label="Open menu"><span></span></button>
+                    <nav class="avr-nav" aria-label="Main">
+                        <a href="/" class="avr-nav__link">Home</a>
+                        <a href="about.html" class="avr-nav__link">About Us</a>
+                        <a href="contact.html" class="avr-nav__link avr-nav__link--active">Contact Us</a>
+                    </nav>
+                    <a href="/#homePromo" class="avr-btn avr-btn--outline avr-hide-mobile">Get A Quote</a>
+                </div>
+            </header>
+            <div class="avr-nav-drawer" id="avrNavDrawer">
+                <div class="avr-nav-drawer__panel">
+                    <a href="/">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="/#homePromo" class="avr-btn avr-btn--primary" style="margin-top:12px;text-align:center;">Get
+                        A Quote</a>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <div class="avr-page-hero">
+                <div class="avr-container">
+                    <h1>Contact Us</h1>
+                    <p class="avr-breadcrumb"><a href="/">Home</a> › Contact Us</p>
+                </div>
+            </div>
+
+            <section class="avr-section">
+                <div class="avr-container avr-contact-grid">
+                    <div>
+                        <h2 style="font-size:1.65rem;margin:0 0 16px;line-height:1.3;">Get in Touch</h2>
+                        <p style="color:var(--avr-muted);line-height:1.65;margin:0 0 24px;">We are here to help with
+                            vehicle questions or your history report. Send a message or email us directly.</p>
+                        <p style="margin:0;"><span style="color:var(--avr-blue);font-weight:700;margin-right:8px;">✉</span>
+                            <a href="mailto:info@autovehiclereport.co.uk"
+                                style="font-weight:600;color:var(--avr-text);text-decoration:none;">info@autovehiclereport.co.uk</a>
+                        </p>
+                    </div>
+                    <div>
+                        <h2 style="font-size:1.15rem;margin:0 0 20px;">Contact Us</h2>
+                        <form class="avr-form" action="https://api.web3forms.com/submit" method="POST">
+                            <input type="hidden" name="access_key" value="8a31cfe9-5cd5-4f84-8f73-3fe00c6753e2">
+                            <input type="hidden" name="subject" value="Auto Vehicle Report — Contact Form">
+                            <label for="c-name">Name</label>
+                            <input id="c-name" name="name" type="text" placeholder="Name" required autocomplete="name">
+                            <label for="c-email">Email</label>
+                            <input id="c-email" name="email" type="email" placeholder="Email" required
+                                autocomplete="email">
+                            <label for="c-msg">Message</label>
+                            <textarea id="c-msg" name="message" placeholder="Message" required></textarea>
+                            <button type="submit">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="avr-footer">
+            <div class="avr-container">
+                <div class="avr-footer__grid">
+                    <div class="avr-footer__brand">
+                        <a href="/" class="avr-logo">
+                            <span class="avr-logo__icon" aria-hidden="true"></span>
+                            <span class="avr-logo__text">Auto Vehicle Report</span>
+                        </a>
+                        <p>Auto History Report is a specialized service that lets you check a car using its registration
+                            number or VIN and provides complete access to vehicle information.</p>
+                    </div>
+                    <div>
+                        <h4>Useful links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Contact us</h4>
+                        <ul>
+                            <li><a href="mailto:info@autovehiclereport.co.uk">info@autovehiclereport.co.uk</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="avr-footer__bottom">
+                    <span>Copyright 2026 | Auto History Report</span>
+                    <div class="avr-footer__legal">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="refund-policy.html">Refund Policy</a>
+                        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        (function () {
+            var btn = document.getElementById('avrNavToggle');
+            var drawer = document.getElementById('avrNavDrawer');
+            if (!btn || !drawer) return;
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var open = drawer.classList.toggle('avr-open');
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            });
+            drawer.addEventListener('click', function (e) {
+                if (e.target === drawer) {
+                    drawer.classList.remove('avr-open');
+                    btn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
