@@ -320,7 +320,34 @@ body.avr-redesign {
 
 .avr-check-card .button--main,
 .avr-check-card .find-vin__check-btn {
-    border-radius: 10px !important;
+    border-radius: 30px !important;
+}
+
+/* Hero form: replace legacy yellow/orange with brand blue */
+.avr-check-card .find-vin__group--vin {
+    border-color: var(--avr-blue) !important;
+}
+
+.avr-check-card .find-vin__group--vin.find-vin__group--invalid,
+.avr-check-card .find-vin__group--vin.error {
+    border-color: #dc2626 !important;
+}
+
+.avr-check-card .button--main.find-vin__check-btn,
+.avr-check-card .find-vin__check-btn.button--main {
+    background-color: var(--avr-blue) !important;
+    color: #fff !important;
+}
+
+.avr-check-card .button--main.find-vin__check-btn:hover,
+.avr-check-card .find-vin__check-btn.button--main:hover {
+    background-color: var(--avr-blue-dark) !important;
+    color: #fff !important;
+}
+
+.avr-check-card .button--main.find-vin__check-btn:after,
+.avr-check-card .find-vin__check-btn.button--main:after {
+    background-image: url(../img2/arrows/arrow-btn-white-icon.svg) !important;
 }
 
 /* —— Sections —— */
