@@ -10141,6 +10141,186 @@ Do not reply to this message.`;
             }
         }
     </style>
+    <style>
+        /* Pricing Section Styles */
+        .avr-pricing {
+            padding: 80px 0;
+            background-color: var(--basic-white);
+        }
+
+        .avr-pricing__header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .avr-pricing__title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--basic-black);
+            margin-bottom: 15px;
+        }
+
+        .avr-pricing__subtitle {
+            font-size: 18px;
+            color: var(--dark-grey);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .avr-pricing__grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 768px) {
+            .avr-pricing__grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .avr-pricing__grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .avr-pricing__card {
+            background: var(--basic-white);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .avr-pricing__card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .avr-pricing__card--popular {
+            border: 2px solid var(--main-blue);
+            box-shadow: 0 10px 30px rgba(0, 132, 255, 0.1);
+        }
+
+        .avr-pricing__badge {
+            background-color: var(--main-blue);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        .avr-pricing__plan-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--basic-black);
+            margin-bottom: 15px;
+        }
+
+        .avr-pricing__price-wrap {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 10px;
+        }
+
+        .avr-pricing__price {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--basic-black);
+        }
+
+        .avr-pricing__period {
+            font-size: 16px;
+            color: var(--dark-grey);
+            margin-left: 5px;
+        }
+
+        .avr-pricing__billing-note {
+            font-size: 14px;
+            color: var(--grey);
+            margin-bottom: 25px;
+        }
+
+        .avr-pricing__features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            flex-grow: 1;
+        }
+
+        .avr-pricing__feature {
+            font-size: 15px;
+            color: var(--dark-grey);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .avr-pricing__feature:before {
+            content: "✓";
+            color: #219653;
+            font-weight: 700;
+            margin-right: 12px;
+            font-size: 18px;
+        }
+
+        .avr-pricing__btn {
+            display: block;
+            text-align: center;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .avr-pricing__btn--outline {
+            background-color: transparent;
+            border: 2px solid var(--main-blue);
+            color: var(--main-blue);
+        }
+
+        .avr-pricing__btn--outline:hover {
+            background-color: var(--main-blue);
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .avr-pricing__btn--primary {
+            background-color: var(--main-blue);
+            color: #fff;
+            border: 2px solid var(--main-blue);
+        }
+
+        .avr-pricing__btn--primary:hover {
+            background-color: #0070d6;
+            border-color: #0070d6;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .avr-pricing__footer-note {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--grey);
+            font-size: 14px;
+        }
+    </style>
     <link rel="stylesheet" href="css/avr-site.css">
 </head>
 <style>
@@ -10159,7 +10339,7 @@ Do not reply to this message.`;
                 <div class="avr-container avr-header__inner">
                     <a href="/" class="avr-logo">
                         <span class="avr-logo__icon" aria-hidden="true"></span>
-                        <span class="avr-logo__text">Auto Vehicle Report</span>
+                        <span class="avr-logo__text">Auto Inspect Report</span>
                     </a>
                     <button type="button" class="avr-nav-toggle" id="avrNavToggle" aria-expanded="false"
                         aria-controls="avrNavDrawer" aria-label="Open menu"><span></span></button>
@@ -10229,7 +10409,7 @@ Do not reply to this message.`;
                                                 <option value="JETSKI">JETSKI</option>
                                             </select>
                                         </div>
-                                        <div
+                                        <!-- <div
                                             style="background: transparent; padding: 0; margin-bottom: 16px; position: relative; z-index: 1;">
                                             <label for="vehicle-type-promo"
                                                 style="display: block; margin-bottom: 10px; font-size: 15px; font-weight: 500;">Select
@@ -10240,7 +10420,7 @@ Do not reply to this message.`;
                                                 <option value="standard" selected>Standard ($40)</option>
                                                 <option value="premium">Premium ($60)</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                         <div
                                             style="background: transparent; padding: 0; margin-bottom: 16px; position: relative; z-index: 1;">
                                             <label for="customer-email-promo"
@@ -10456,6 +10636,73 @@ Do not reply to this message.`;
                 </div>
             </section>
 
+            <section class="avr-pricing">
+                <div class="avr-container">
+                    <div class="avr-pricing__header">
+                        <h2 class="avr-pricing__title">Simple & Transparent Pricing</h2>
+                        <p class="avr-pricing__subtitle">AutoInspect offers flexible monthly plans for users. Choose the perfect plan for your vehicle inspection needs.</p>
+                    </div>
+
+                    <div class="avr-pricing__grid">
+                        <!-- Basic Plan -->
+                        <div class="avr-pricing__card">
+                            <h3 class="avr-pricing__plan-name">Basic</h3>
+                            <div class="avr-pricing__price-wrap">
+                                <span class="avr-pricing__price">$9</span>
+                                <span class="avr-pricing__period">/month</span>
+                            </div>
+                            <p class="avr-pricing__billing-note">Billed Monthly</p>
+                            <ul class="avr-pricing__features">
+                                <li class="avr-pricing__feature">5 Reports per month</li>
+                                <li class="avr-pricing__feature">Standard VIN Check</li>
+                                <li class="avr-pricing__feature">30-day Data Access</li>
+                                <li class="avr-pricing__feature">Email Support</li>
+                            </ul>
+                            <a href="#homePromo" class="avr-pricing__btn avr-pricing__btn--outline">Get Started</a>
+                        </div>
+
+                        <!-- Pro Plan (Most Popular) -->
+                        <div class="avr-pricing__card avr-pricing__card--popular">
+                            <span class="avr-pricing__badge">Most Popular</span>
+                            <h3 class="avr-pricing__plan-name">Pro</h3>
+                            <div class="avr-pricing__price-wrap">
+                                <span class="avr-pricing__price">$19</span>
+                                <span class="avr-pricing__period">/month</span>
+                            </div>
+                            <p class="avr-pricing__billing-note">Billed Monthly</p>
+                            <ul class="avr-pricing__features">
+                                <li class="avr-pricing__feature">20 Reports per month</li>
+                                <li class="avr-pricing__feature">Detailed Vehicle History</li>
+                                <li class="avr-pricing__feature">90-day Data Access</li>
+                                <li class="avr-pricing__feature">Priority Support</li>
+                                <li class="avr-pricing__feature">PDF Export Options</li>
+                            </ul>
+                            <a href="#homePromo" class="avr-pricing__btn avr-pricing__btn--primary">Subscribe Now</a>
+                        </div>
+
+                        <!-- Premium Plan -->
+                        <div class="avr-pricing__card">
+                            <h3 class="avr-pricing__plan-name">Premium</h3>
+                            <div class="avr-pricing__price-wrap">
+                                <span class="avr-pricing__price">$29</span>
+                                <span class="avr-pricing__period">/month</span>
+                            </div>
+                            <p class="avr-pricing__billing-note">Billed Monthly</p>
+                            <ul class="avr-pricing__features">
+                                <li class="avr-pricing__feature">Unlimited Reports</li>
+                                <li class="avr-pricing__feature">Full Premium Access</li>
+                                <li class="avr-pricing__feature">Lifetime Data Access</li>
+                                <li class="avr-pricing__feature">24/7 Priority Support</li>
+                                <li class="avr-pricing__feature">Advanced Analytics</li>
+                            </ul>
+                            <a href="#homePromo" class="avr-pricing__btn avr-pricing__btn--outline">Get Started</a>
+                        </div>
+                    </div>
+
+                    <p class="avr-pricing__footer-note">Cancel anytime. No hidden charges.</p>
+                </div>
+            </section>
+
             <section class="avr-section">
                 <div class="avr-container avr-faq-split">
                     <div class="avr-faq-split__img">
@@ -10538,8 +10785,7 @@ Do not reply to this message.`;
                             <span class="avr-logo__icon" aria-hidden="true"></span>
                             <span class="avr-logo__text">Auto Vehicle Report</span>
                         </a>
-                        <p>Auto History Report is a specialized service that lets you check a car using its registration
-                            number or VIN and provides complete access to vehicle information.</p>
+                        <p>AutoInspect History Report is a fully automated, API-generated service that allows you to check a vehicle using its registration number or VIN. The system instantly delivers complete vehicle information without any human involvement, ensuring fast, accurate, and reliable reports.</p>
                     </div>
                     <div>
                         <h4>Useful links</h4>
@@ -10552,7 +10798,7 @@ Do not reply to this message.`;
                     <div>
                         <h4>Contact us</h4>
                         <ul>
-                            <li><a href="mailto:info@autovehiclereport.co.uk">info@autovehiclereport.co.uk</a></li>
+                            <li><a href="mailto:info@autoinspectreport.site">info@autoinspectreport.site</a></li>
                         </ul>
                     </div>
                 </div>
