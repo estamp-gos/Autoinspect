@@ -1,0 +1,670 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+/* Custom Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.7s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.7s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.5s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Shimmer Effect */
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 2000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Glass Morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Smooth Transitions */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Blob Animation */
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* PayPal Modal Styles */
+.paypal-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.paypal-modal-overlay * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.paypal-modal-overlay .paypal-modal-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  background: transparent;
+  position: relative;
+}
+
+/* ---------- LEFT PANEL ---------- */
+.paypal-modal-overlay .left-panel {
+  flex: 1 1 46%;
+  padding: 56px 48px 56px 56px;
+  color: #e7e9ea;
+  display: flex;
+  flex-direction: column;
+}
+
+.paypal-modal-overlay .left-panel h1 {
+  font-size: 42px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #dfe2e4;
+  letter-spacing: -0.5px;
+  margin-bottom: 56px;
+  text-align: left;
+}
+
+.paypal-modal-overlay .timeline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 20px 0;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.paypal-modal-overlay .timeline-row:last-child {
+  border-bottom: none;
+}
+
+.paypal-modal-overlay .timeline-row .label {
+  color: #b9bdc1;
+}
+
+.paypal-modal-overlay .timeline-row .value {
+  color: #f2f3f4;
+  text-align: right;
+}
+
+.paypal-modal-overlay .strike {
+  text-decoration: line-through;
+  color: #7a8085;
+  margin-right: 6px;
+  font-weight: 400;
+}
+
+/* ---------- RIGHT PANEL ---------- */
+.paypal-modal-overlay .right-panel {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 40px 36px 40px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+.paypal-modal-overlay .dropdown {
+  background: #eaf1fd;
+  border: 1px solid #d3e3fb;
+  color: #1f4e8c;
+  border-radius: 10px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  cursor: pointer;
+  margin-bottom: 18px;
+  user-select: none;
+}
+
+.paypal-modal-overlay .dropdown svg {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.paypal-modal-overlay .dropdown.open svg {
+  transform: rotate(180deg);
+}
+
+.paypal-modal-overlay .dropdown-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease, padding 0.25s ease, margin 0.25s ease;
+  font-size: 13px;
+  color: #4a5568;
+  background: #f7faff;
+  border-radius: 0 0 10px 10px;
+  margin-top: -18px;
+  margin-bottom: 18px;
+}
+
+.paypal-modal-overlay .dropdown-panel.open {
+  max-height: 100px;
+  padding: 14px 18px 16px;
+  margin-top: -14px;
+}
+
+.paypal-modal-overlay .paypal-btn {
+  background: #ffc439;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: filter 0.15s ease;
+}
+
+.paypal-modal-overlay .paypal-btn:hover {
+  filter: brightness(0.96);
+}
+
+.paypal-modal-overlay .paypal-logo {
+  font-size: 22px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.5px;
+}
+
+.paypal-modal-overlay .paypal-logo .pay { color: #003087; }
+.paypal-modal-overlay .paypal-logo .pal { color: #009cde; }
+
+.paypal-modal-overlay .or-divider {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.paypal-modal-overlay .card-group {
+  border: 1px solid #dcdfe4;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.paypal-modal-overlay .field {
+  border-bottom: 1px solid #dcdfe4;
+  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.paypal-modal-overlay .card-group .field:last-child,
+.paypal-modal-overlay .split-row .field:last-child {
+  border-bottom: none;
+}
+
+.paypal-modal-overlay .field input {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #1a1a1a;
+  width: 100%;
+  background: transparent;
+}
+
+.paypal-modal-overlay .field input::placeholder {
+  color: #8a8f98;
+}
+
+.paypal-modal-overlay .card-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.paypal-modal-overlay .card-icon {
+  width: 30px;
+  height: 19px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.paypal-modal-overlay .icon-visa { background: #1a1f71; font-size: 9px; font-style: italic; }
+.paypal-modal-overlay .icon-mc { background: #16171a; padding: 0; }
+.paypal-modal-overlay .icon-mc .circles { display: flex; }
+.paypal-modal-overlay .icon-mc .c1 { width: 11px; height: 11px; border-radius: 50%; background: #eb001b; }
+.paypal-modal-overlay .icon-mc .c2 { width: 11px; height: 11px; border-radius: 50%; background: #f79e1b; margin-left: -4px; }
+.paypal-modal-overlay .icon-amex { background: #1f72cd; font-size: 6.5px; }
+.paypal-modal-overlay .icon-discover { background: #f0f0f0; color: #e8720c; font-size: 6px; border: 1px solid #e2e2e2; }
+
+.paypal-modal-overlay .lock-icon {
+  color: #9aa0a8;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.paypal-modal-overlay .split-row-inner {
+  display: flex;
+}
+
+.paypal-modal-overlay .split-row-inner .field {
+  flex: 1;
+  border-bottom: none;
+}
+
+.paypal-modal-overlay .split-row-inner .field:first-child {
+  border-right: 1px solid #dcdfe4;
+}
+
+.paypal-modal-overlay .split-row {
+  display: flex;
+  border: 1px solid #dcdfe4;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.paypal-modal-overlay .split-row .field {
+  flex: 1;
+  border-bottom: none;
+}
+
+.paypal-modal-overlay .split-row .field:first-child {
+  border-right: 1px solid #dcdfe4;
+}
+
+.paypal-modal-overlay .info-icon {
+  color: #9aa0a8;
+  flex-shrink: 0;
+}
+
+.paypal-modal-overlay .single-group {
+  border: 1px solid #dcdfe4;
+  border-radius: 12px;
+  padding: 13px 16px;
+  margin-bottom: 16px;
+}
+
+.paypal-modal-overlay .single-group input {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  width: 100%;
+  color: #1a1a1a;
+}
+
+.paypal-modal-overlay .single-group input::placeholder {
+  color: #8a8f98;
+}
+
+.paypal-modal-overlay .country-select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  position: relative;
+}
+
+.paypal-modal-overlay .country-select select {
+  border: none;
+  outline: none;
+  font-size: 15px;
+  color: #1a1a1a;
+  background: transparent;
+  width: 100%;
+  appearance: none;
+  cursor: pointer;
+}
+
+.paypal-modal-overlay .chev {
+  color: #6b7280;
+  flex-shrink: 0;
+  margin-left: 6px;
+}
+
+.paypal-modal-overlay .subscribe-btn {
+  background: #111213;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 17px 0;
+  font-size: 16px;
+  font-weight: 700;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 14px;
+  transition: background 0.15s ease;
+}
+
+.paypal-modal-overlay .subscribe-btn:hover {
+  background: #000;
+}
+
+.paypal-modal-overlay .subscribe-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.paypal-modal-overlay .paypal-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.paypal-modal-overlay .fine-print {
+  text-align: center;
+  font-size: 12.5px;
+  color: #8a9099;
+  line-height: 1.5;
+}
+
+.paypal-modal-overlay .paypal-close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 28px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #888;
+  z-index: 10100;
+  transition: color 0.2s;
+}
+
+.paypal-modal-overlay .paypal-close-btn:hover {
+  color: #333;
+}
+
+@media (max-width: 800px) {
+  .paypal-modal-overlay .right-panel {
+    padding: 28px 24px 32px 24px;
+  }
+}
+
+/* Confirmation Modal Styles */
+.confirm-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 20000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.confirm-modal {
+  background: white;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.confirm-modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.confirm-modal-text {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.confirm-modal-btn {
+  background: #111827;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.15s ease;
+}
+
+.confirm-modal-btn:hover {
+  background: #000;
+}
