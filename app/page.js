@@ -237,7 +237,12 @@ export default function App() {
         result2 = { success: false, error: 'Failed to parse reminder response' }
       }
 
-      if (result.success && result2.success) {
+      // Reminder email is best-effort; do not block checkout if it fails
+      if (!result2.success) {
+        console.warn('Reminder email failed:', result2.error || result2.message || result2)
+      }
+
+      if (result.success) {
         // Store form data in localStorage for the thank you page
         localStorage.setItem('vinReport', JSON.stringify({
           vin: vinInput.trim(),
@@ -254,7 +259,12 @@ export default function App() {
         // Open checkout modal
         setShowCheckoutModal(true)
       } else {
-        const errorMsg = result.message || result.error || result2.message || result2.error || 'Failed to submit request. Please try again.'
+        const errorMsg =
+          (typeof result.error === 'string' ? result.error : result.error?.message) ||
+          result.message ||
+          result2.error ||
+          result2.message ||
+          'Failed to submit request. Please try again.'
         alert('Error: ' + errorMsg)
       }
 
