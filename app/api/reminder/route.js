@@ -20,7 +20,7 @@ export async function POST(request) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'support@vinxtract.com',
+      from: 'support@autoinspect.site',
       to: [email],
       subject: 'Payment Completion mail - IGNORE THIS IF YOU HAVE ALREADY PAID FOR THE REPORT',
       react: EmailTemplate({ vin, email, carModel }),

@@ -1,5 +1,5 @@
 /**
- * VinXtract - Payment Form Google Sheets Integration
+ * Autoinspect - Payment Form Google Sheets Integration
  *
  * Setup:
  * 1. Open your sheet:
@@ -37,7 +37,7 @@ const PAYMENT_HEADERS = [
 function doGet() {
   return jsonResponse({
     success: true,
-    message: 'VinXtract payment form endpoint is running. Use POST with action savePaymentForm.',
+    message: 'Autoinspect payment form endpoint is running. Use POST with action savePaymentForm.',
   });
 }
 

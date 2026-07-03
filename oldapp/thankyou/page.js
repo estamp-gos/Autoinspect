@@ -83,7 +83,7 @@ export default function ThankYou() {
         String(registration || 'vehicle')
           .replace(/[^\w\d-]+/gi, '')
           .slice(0, 32) || 'vehicle'
-      a.download = `VinXtract-Report-${safeReg}.pdf`
+      a.download = `Autoinspect-Report-${safeReg}.pdf`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
@@ -103,12 +103,12 @@ export default function ThankYou() {
             <Link href="/" className="flex items-center">
               <Image
                 src="/car-logo.webp"
-                alt="VinXtract"
+                alt="Autoinspect"
                 width={40}
                 height={40}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-600">VinXtract</div>
+              <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
             </Link>
 
             <nav className="hidden md:flex items-center space-x-8">
@@ -133,7 +133,7 @@ export default function ThankYou() {
           </h1>
 
           <p className="text-xl text-gray-600 mb-8">
-            Your VinXtractStore VIN report request has been successfully submitted and payment has been processed. Your comprehensive vehicle history report will be delivered soon. For any query feel free to message us on car.check.store@gmail.com
+            Your Autoinspect VIN report request has been successfully submitted and payment has been processed. Your comprehensive vehicle history report will be delivered soon. For any query feel free to message us on car.check.store@gmail.com
           </p>
 
           <div className="bg-white p-8 rounded-2xl shadow-lg mb-8">
@@ -146,7 +146,7 @@ export default function ThankYou() {
                 </div>
                 <div>
                   <h3 className="font-semibold text-gray-900 mb-2">Processing Your Request</h3>
-                  <p className="text-gray-600">Our VinXtractStore system is now processing your VIN and gathering data from comprehensive databases worldwide.</p>
+                  <p className="text-gray-600">Our Autoinspect system is now processing your VIN and gathering data from comprehensive databases worldwide.</p>
                 </div>
               </div>
 
@@ -261,12 +261,12 @@ export default function ThankYou() {
             <div className="mb-4 md:mb-0 flex items-center">
               <Image
                 src="/car-logo.webp"
-                alt="VinXtractStore"
+                alt="Autoinspect"
                 width={32}
                 height={32}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-400">VinXtractStore</div>
+              <div className="text-2xl font-bold text-blue-400">Autoinspect</div>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
@@ -277,7 +277,7 @@ export default function ThankYou() {
           </div>
 
           <div className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-400">
-            © 2015 VinXtractStore. All rights reserved. | Vehicle History Reports & VIN Checks
+            © 2015 Autoinspect. All rights reserved. | Vehicle History Reports & VIN Checks
           </div>
         </div>
       </footer>
@@ -303,7 +303,7 @@ export default function ThankYou() {
               Your report PDF is ready
             </h2>
             <p className="mt-3 text-sm text-gray-600">
-              Generate and download your VinXtract vehicle report using the details you submitted before checkout. Email delivery remains available if you prefer a copy from support.
+              Generate and download your Autoinspect vehicle report using the details you submitted before checkout. Email delivery remains available if you prefer a copy from support.
             </p>
 
             {registration ? (

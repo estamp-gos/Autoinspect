@@ -6,6 +6,7 @@ import PaypalModal from './components/PaypalModal'
 export default function App() {
   const [vinInput, setVinInput] = useState('')
   const [emailInput, setEmailInput] = useState('')
+  const [yearInput, setYearInput] = useState('')
   const [carModelInput, setCarModelInput] = useState('')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -159,6 +160,13 @@ export default function App() {
       return
     }
 
+    const year = yearInput.trim()
+    const currentYear = new Date().getFullYear() + 1
+    if (!year || !/^\d{4}$/.test(year) || Number(year) < 1900 || Number(year) > currentYear) {
+      alert(`Please enter a valid model year (1900–${currentYear})`)
+      return
+    }
+
     if (!carModelInput.trim()) {
       alert('Please enter the car model')
       return
@@ -167,7 +175,7 @@ export default function App() {
     setIsSubmitting(true)
 
     try {
-      // Send VIN, email, car model, and pricing tier to backend
+      // Send VIN, email, year, car model, and pricing tier to backend
       const response = await fetch('/api/send-vin', {
         method: 'POST',
         headers: {
@@ -176,6 +184,7 @@ export default function App() {
         body: JSON.stringify({
           vin: vinInput.trim(),
           email: emailInput.trim(),
+          year,
           carModel: carModelInput.trim(),
           tier: selectedTier,
           tierName: PRICING_TIERS[selectedTier].name,
@@ -192,6 +201,7 @@ export default function App() {
         body: JSON.stringify({
           vin: vinInput.trim(),
           email: emailInput.trim(),
+          year,
           carModel: carModelInput.trim(),
           tier: selectedTier,
           tierName: PRICING_TIERS[selectedTier].name,
@@ -232,6 +242,7 @@ export default function App() {
         localStorage.setItem('vinReport', JSON.stringify({
           vin: vinInput.trim(),
           email: emailInput.trim(),
+          year: yearInput.trim(),
           carModel: carModelInput.trim(),
           tier: selectedTier,
           tierName: PRICING_TIERS[selectedTier].name,
@@ -271,12 +282,12 @@ export default function App() {
             <div className="flex items-center">
               <Image
                 src="/car-logo.webp"
-                alt="VinXtract - Vehicle History Reports"
+                alt="Autoinspect - Vehicle History Reports"
                 width={40}
                 height={40}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-600">VinXtract</div>
+              <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
             </div>
 
             {/* Desktop Navigation */}
@@ -411,7 +422,7 @@ export default function App() {
               {/* VIN Input Form */}
               <div id="vin-input-section" className="max-w-2xl mx-auto lg:mx-0 bg-white p-8 rounded-2xl shadow-2xl border-2 border-blue-500 animate-scaleIn delay-400">
                 <div className="mb-6 text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Your Report in 3 Steps</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Your Report in 4 Steps</h3>
                   <p className="text-gray-600">Join thousands making smarter car buying decisions</p>
                 </div>
 
@@ -504,7 +515,29 @@ export default function App() {
 
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      3. Vehicle Model (Optional but Recommended)
+                      3. Model Year
+                    </label>
+                    <input
+                      type="text"
+                      inputMode="numeric"
+                      placeholder="e.g., 2002"
+                      value={yearInput}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, '').slice(0, 4)
+                        setYearInput(value)
+                      }}
+                      maxLength={4}
+                      className="w-full text-gray-700 px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-lg transition-all hover:border-blue-300"
+                      required
+                    />
+                    <div className="mt-1 text-sm text-gray-500">
+                      Required for accurate vehicle specifications
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      4. Vehicle Model
                     </label>
                     <input
                       type="text"
@@ -521,7 +554,7 @@ export default function App() {
 
                   <button
                     type="submit"
-                    disabled={!vinInput.trim() || !emailInput.trim() || !carModelInput.trim() || isSubmitting}
+                    disabled={!vinInput.trim() || !emailInput.trim() || yearInput.length !== 4 || !carModelInput.trim() || isSubmitting}
                     className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-5 rounded-xl hover:from-blue-700 hover:to-indigo-700 disabled:from-gray-400 disabled:to-gray-500 disabled:cursor-not-allowed transition-all font-bold text-xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 active:translate-y-0 relative overflow-hidden group"
                   >
                     <span className="relative z-10">
@@ -706,7 +739,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What You Get with Every VinXtract Report
+              What You Get with Every Autoinspect Report
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Our comprehensive vehicle history report includes detailed analysis and documentation delivered as a professional PDF report to your email.
@@ -801,7 +834,7 @@ export default function App() {
 
           {/* Service Guarantee */}
           <div className="bg-gradient-to-r from-blue-600 to-blue-800 rounded-2xl p-8 text-white text-center">
-            <h3 className="text-2xl font-bold mb-4">VinXtract Service Guarantee</h3>
+            <h3 className="text-2xl font-bold mb-4">Autoinspect Service Guarantee</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
                 <div className="text-3xl mb-2">⚡</div>
@@ -828,10 +861,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What VinXtract checks when preparing your vehicle history report
+              What Autoinspect checks when preparing your vehicle history report
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              VinXtract reports are powered by a global automotive data network, covering over 1 billion data points across thousands of vehicles. Our comprehensive VIN check service ensures you get accurate, reliable information.
+              Autoinspect reports are powered by a global automotive data network, covering over 1 billion data points across thousands of vehicles. Our comprehensive VIN check service ensures you get accurate, reliable information.
             </p>
           </div>
 
@@ -883,10 +916,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Choose wisely with VinXtract
+              Choose wisely with Autoinspect
             </h2>
             <p className="text-xl text-gray-600">
-              Make a confident car buying decision with the help of a comprehensive VinXtract vehicle history report.
+              Make a confident car buying decision with the help of a comprehensive Autoinspect vehicle history report.
             </p>
           </div>
 
@@ -925,27 +958,27 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Hear from people who trust VinXtract
+              Hear from people who trust Autoinspect
             </h2>
             <p className="text-xl text-gray-600">
-              See how real customers are making better car decisions with VinXtract vehicle history reports:
+              See how real customers are making better car decisions with Autoinspect vehicle history reports:
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                quote: "Very reassuring before buying a used vehicle. VinXtract provided a detailed and accurate report.",
+                quote: "Very reassuring before buying a used vehicle. Autoinspect provided a detailed and accurate report.",
                 author: "JC",
                 verified: true
               },
               {
-                quote: "Slightly pricey, but saved me from a huge mistake. The mileage was tampered, and VinXtract caught it.",
+                quote: "Slightly pricey, but saved me from a huge mistake. The mileage was tampered, and Autoinspect caught it.",
                 author: "Sasha",
                 verified: true
               },
               {
-                quote: "Everything matched perfectly. VinXtract helped me catch an odometer fraud I would never have noticed.",
+                quote: "Everything matched perfectly. Autoinspect helped me catch an odometer fraud I would never have noticed.",
                 author: "Rolando",
                 verified: true
               }
@@ -978,10 +1011,10 @@ export default function App() {
       <section className="py-20 bg-blue-600">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            VinXtract - Complete Car History Reports
+            Autoinspect - Complete Car History Reports
           </h2>
           <p className="text-xl text-blue-100 mb-8">
-            Avoid unexpected costs and problems with our comprehensive vehicle history reports. Enter your VIN now and get a full car report delivered to your email from VinXtract.
+            Avoid unexpected costs and problems with our comprehensive vehicle history reports. Enter your VIN now and get a full car report delivered to your email from Autoinspect.
           </p>
 
           <div className="bg-white p-8 rounded-2xl shadow-lg">
@@ -1049,6 +1082,25 @@ export default function App() {
               <div>
                 <input
                   type="text"
+                  inputMode="numeric"
+                  placeholder="Model year (e.g., 2002)"
+                  value={yearInput}
+                  onChange={(e) => {
+                    const value = e.target.value.replace(/\D/g, '').slice(0, 4)
+                    setYearInput(value)
+                  }}
+                  maxLength={4}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-lg"
+                  required
+                />
+                <div className="mt-1 text-sm text-gray-600">
+                  Required for accurate vehicle specifications
+                </div>
+              </div>
+
+              <div>
+                <input
+                  type="text"
                   placeholder="Enter car model (e.g., Honda Civic, BMW X5, Toyota Camry)"
                   value={carModelInput}
                   onChange={(e) => setCarModelInput(e.target.value)}
@@ -1062,7 +1114,7 @@ export default function App() {
 
               <button
                 type="submit"
-                disabled={!vinInput.trim() || !emailInput.trim() || !carModelInput.trim() || isSubmitting}
+                disabled={!vinInput.trim() || !emailInput.trim() || yearInput.length !== 4 || !carModelInput.trim() || isSubmitting}
                 className="w-full bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors font-semibold text-lg"
               >
                 {isSubmitting ? 'Submitting...' : `Get ${PRICING_TIERS[selectedTier].name} Report`}
@@ -1093,10 +1145,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              VinXtract: Leading the way in automotive data
+              Autoinspect: Leading the way in automotive data
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Since 2020, VinXtract has expanded to over 35 international markets. We pull data from comprehensive databases, including national vehicle registries, insurance records, law enforcement, and government agencies.
+              Since 2020, Autoinspect has expanded to over 35 international markets. We pull data from comprehensive databases, including national vehicle registries, insurance records, law enforcement, and government agencies.
             </p>
           </div>
 
@@ -1213,10 +1265,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              How VinXtract Works
+              How Autoinspect Works
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Get comprehensive vehicle history reports from VinXtract in just three simple steps. Our advanced system processes data from hundreds of sources to give you the complete picture.
+              Get comprehensive vehicle history reports from Autoinspect in just three simple steps. Our advanced system processes data from hundreds of sources to give you the complete picture.
             </p>
           </div>
 
@@ -1269,10 +1321,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              VinXtract Comprehensive Vehicle Analysis
+              Autoinspect Comprehensive Vehicle Analysis
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our reports cover every aspect of a vehicle&apos;s history. Here&apos;s what makes VinXtract the most trusted choice for vehicle history reports and VIN checks.
+              Our reports cover every aspect of a vehicle&apos;s history. Here&apos;s what makes Autoinspect the most trusted choice for vehicle history reports and VIN checks.
             </p>
           </div>
 
@@ -1421,10 +1473,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Know the Real Market Value with VinXtract
+              Know the Real Market Value with Autoinspect
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our market analysis helps you understand if you&apos;re getting a fair deal. VinXtract compares similar vehicles and factors in the vehicle&apos;s history to give you accurate pricing information.
+              Our market analysis helps you understand if you&apos;re getting a fair deal. Autoinspect compares similar vehicles and factors in the vehicle&apos;s history to give you accurate pricing information.
             </p>
           </div>
 
@@ -1511,10 +1563,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              VinXtract Industry Recognition &amp; Awards
+              Autoinspect Industry Recognition &amp; Awards
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              VinXtract has been recognized by leading automotive organizations and has received numerous awards for our comprehensive reporting and customer service.
+              Autoinspect has been recognized by leading automotive organizations and has received numerous awards for our comprehensive reporting and customer service.
             </p>
           </div>
 
@@ -1561,7 +1613,7 @@ export default function App() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked Questions about VinXtract
+              Frequently Asked Questions about Autoinspect
             </h2>
             <p className="text-xl text-gray-600">
               Got questions? We&apos;ve got answers. Here are the most common questions about our vehicle history reports and VIN check services.
@@ -1571,28 +1623,28 @@ export default function App() {
           <div className="space-y-6">
             {[
               {
-                question: "How accurate are VinXtract reports?",
+                question: "How accurate are Autoinspect reports?",
                 answer: "Our reports are highly accurate as we source data from over 900 trusted databases including DMV records, insurance companies, auction houses, and government agencies. However, we recommend using our reports as one factor in your decision-making process."
               },
               {
                 question: "What if I don't have the VIN number?",
-                answer: "If you don't have the VIN, you can usually find it on the dashboard visible through the windshield, on the driver side door frame, or in the vehicle documentation. VinXtract also offers assistance in locating VIN numbers for specific vehicles."
+                answer: "If you don't have the VIN, you can usually find it on the dashboard visible through the windshield, on the driver side door frame, or in the vehicle documentation. Autoinspect also offers assistance in locating VIN numbers for specific vehicles."
               },
               {
-                question: "How long does it take to receive my VinXtract report?",
+                question: "How long does it take to receive my Autoinspect report?",
                 answer: "Most reports are delivered instantly via email. However, we allow up to 6-12 hours for delivery to account for any technical delays or complex data compilation requirements."
               },
               {
-                question: "Can I get a refund if I'm not satisfied with my VinXtract report?",
-                answer: "VinXtract is a digital service and all sales are final. We do not offer refunds as the report is delivered immediately upon purchase. Please ensure you enter the correct VIN before purchasing."
+                question: "Can I get a refund if I'm not satisfied with my Autoinspect report?",
+                answer: "Autoinspect is a digital service and all sales are final. We do not offer refunds as the report is delivered immediately upon purchase. Please ensure you enter the correct VIN before purchasing."
               },
               {
-                question: "Do VinXtract reports cover vehicles from all countries?",
+                question: "Do Autoinspect reports cover vehicles from all countries?",
                 answer: "We currently cover vehicles from over 35 countries across North America, Europe, Oceania, Africa, and the Middle East. Our coverage is continuously expanding to include more international markets."
               },
               {
-                question: "What makes VinXtract different from competitors?",
-                answer: "VinXtract offers the most comprehensive database with over 1 billion data points, faster delivery times, 24/7 customer support, and competitive pricing. We also provide market value analysis and detailed damage assessments."
+                question: "What makes Autoinspect different from competitors?",
+                answer: "Autoinspect offers the most comprehensive database with over 1 billion data points, faster delivery times, 24/7 customer support, and competitive pricing. We also provide market value analysis and detailed damage assessments."
               }
             ].map((faq, index) => (
               <div key={index} className="bg-white p-6 rounded-lg shadow-md">
@@ -1656,10 +1708,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              See What You Get in Every VinXtract Report
+              See What You Get in Every Autoinspect Report
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Every VinXtract report is comprehensive and easy to understand. Here&apos;s a preview of what information you&apos;ll receive from our vehicle history service.
+              Every Autoinspect report is comprehensive and easy to understand. Here&apos;s a preview of what information you&apos;ll receive from our vehicle history service.
             </p>
           </div>
 
@@ -1729,9 +1781,9 @@ export default function App() {
               onClick={scrollToVinInput}
               className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold text-lg"
             >
-              Get Your Complete VinXtract Report Now
+              Get Your Complete Autoinspect Report Now
             </button>
-            <p className="mt-4 text-gray-600">Sample report - Actual VinXtract reports contain much more detailed information</p>
+            <p className="mt-4 text-gray-600">Sample report - Actual Autoinspect reports contain much more detailed information</p>
           </div>
         </div>
       </section>
@@ -1843,7 +1895,7 @@ export default function App() {
               <div className="space-y-4">
                 <div>
                   <div className="font-medium text-gray-900">Email Support</div>
-                  <div className="text-blue-600">support@vinxtract.com</div>
+                  <div className="text-blue-600">support@autoinspect.site</div>
                   <div className="text-sm text-gray-600 mt-1">Response within 24-48 hours</div>
                 </div>
                 <div>
@@ -1871,7 +1923,7 @@ export default function App() {
                 </div>
                 <div>
                   <div className="font-medium text-gray-900">Website</div>
-                  <div className="text-blue-600">VinXtract.com</div>
+                  <div className="text-blue-600">Autoinspect.com</div>
                 </div>
                 <div>
                   <div className="font-medium text-gray-900">Service</div>
@@ -1900,12 +1952,12 @@ export default function App() {
             <div className="mb-4 md:mb-0 flex items-center">
               <Image
                 src="/car-logo.webp"
-                alt="VinXtract"
+                alt="Autoinspect"
                 width={32}
                 height={32}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-400">VinXtract</div>
+              <div className="text-2xl font-bold text-blue-400">Autoinspect</div>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
@@ -1951,9 +2003,9 @@ export default function App() {
 
       {/* SEO Content for Search Engines */}
       <div className="sr-only">
-        <h1>VinXtract - Vehicle History Reports and VIN Checks</h1>
-        <p>VinXtract offers comprehensive vehicle history reports, VIN number checks, car history reports, auto history verification, used car reports, vehicle records analysis, accident history checks, mileage verification services, title record checks, automotive history reports, vehicle inspection reports, car buying assistance, and detailed vehicle analysis. Trust VinXtract for all your vehicle history needs.</p>
-        <p>Keywords: VinXtract, histori vin store, vehicle history report, VIN check, car history, auto history report, used car report, vehicle records, accident history, mileage verification, title check, car buying, automotive history, vehicle inspection, histori vin, VinXtract store, vin reports, car reports, auto reports</p>
+        <h1>Autoinspect - Vehicle History Reports and VIN Checks</h1>
+        <p>Autoinspect offers comprehensive vehicle history reports, VIN number checks, car history reports, auto history verification, used car reports, vehicle records analysis, accident history checks, mileage verification services, title record checks, automotive history reports, vehicle inspection reports, car buying assistance, and detailed vehicle analysis. Trust Autoinspect for all your vehicle history needs.</p>
+        <p>Keywords: Autoinspect, autoinspect.site, vehicle history report, VIN check, car history, auto history report, used car report, vehicle records, accident history, mileage verification, title check, car buying, automotive history, vehicle inspection, vin reports, car reports, auto reports</p>
       </div>
 
       {/* Checkout Modal */}
@@ -1983,6 +2035,9 @@ export default function App() {
               </p>
               <p style={{ marginBottom: '10px', fontSize: '14px', color: '#4b5563' }}>
                 <strong>Email:</strong> {emailInput}
+              </p>
+              <p style={{ marginBottom: '10px', fontSize: '14px', color: '#4b5563' }}>
+                <strong>Model Year:</strong> {yearInput}
               </p>
               <p style={{ marginBottom: '10px', fontSize: '14px', color: '#4b5563' }}>
                 <strong>Car Model:</strong> {carModelInput}
@@ -2027,6 +2082,7 @@ export default function App() {
         orderData={{
           vin: vinInput.trim(),
           email: emailInput.trim(),
+          year: yearInput.trim(),
           carModel: carModelInput.trim(),
           plan: PRICING_TIERS[selectedTier].name,
           price: PRICING_TIERS[selectedTier].price,
@@ -2041,7 +2097,7 @@ export default function App() {
       {showFreeOrderModal && (
         <div className="confirm-modal-overlay">
           <div className="confirm-modal">
-            <h3 className="confirm-modal-title">Free Report Offer</h3>
+            <h3 className="confirm-modal-title">Free report offer</h3>
             <p className="confirm-modal-text">
               This is your first order, no payment will be charged, your first report is free.
             </p>

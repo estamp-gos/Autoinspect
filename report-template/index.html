@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VinXtract Vehicle History Report</title>
+<title>Autoinspect Vehicle History Report</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap');
 
@@ -502,8 +502,8 @@
     .status-summary { grid-template-columns: 1fr; }
   }
 
-  /* ── VinXtract BOX ── */
-  .VinXtract-box {
+  /* ── Autoinspect BOX ── */
+  .Autoinspect-box {
     display: flex;
     gap: 24px;
     align-items: flex-start;
@@ -512,11 +512,11 @@
     border-radius: 6px;
     background: var(--light-gray);
   }
-  .VinXtract-logo {
+  .Autoinspect-logo {
     width: 80px; flex-shrink: 0;
     display: flex; flex-direction: column; align-items: center; gap: 4px;
   }
-  .VinXtract-badge {
+  .Autoinspect-badge {
     background: #003087;
     color: #fff;
     font-size: 11px;
@@ -526,9 +526,9 @@
     border-radius: 4px;
     letter-spacing: 1px;
   }
-  .VinXtract-sub { font-size: 9px; color: var(--mid); text-align: center; line-height: 1.4; }
-  .VinXtract-text { font-size: 12px; color: var(--mid); line-height: 1.7; }
-  .VinXtract-text h4 { font-size: 13px; color: var(--dark); margin-bottom: 8px; font-weight: 700; }
+  .Autoinspect-sub { font-size: 9px; color: var(--mid); text-align: center; line-height: 1.4; }
+  .Autoinspect-text { font-size: 12px; color: var(--mid); line-height: 1.7; }
+  .Autoinspect-text h4 { font-size: 13px; color: var(--dark); margin-bottom: 8px; font-weight: 700; }
 
   /* ── FOOTER ── */
   .report-footer {
@@ -638,7 +638,7 @@
     .title-block-header,
     .data-table thead tr,
     .title-table th,
-    .VinXtract-badge,
+    .Autoinspect-badge,
     .history-box {
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
@@ -741,14 +741,14 @@
 
   <!-- ONLINE HISTORY -->
   <div class="section page-break-after">
-    <div class="section-title">Online History <span class="source-tag">SOURCE: VINXTRACT.COM</span></div>
+    <div class="section-title">Online History <span class="source-tag">SOURCE: AUTOINSPECT.SITE</span></div>
     <div class="history-box" id="si_history">History not available</div>
   </div>
 
   <!-- PAGE 2: JUNK / SALVAGE -->
   <div class="section">
     <div class="section-title">Junk/Salvage Information</div>
-    <p class="section-desc">If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to VinXtract deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.</p>
+    <p class="section-desc">If this VIN has a record in the Junk/Salvage or Insurance information then the business that submitted the VIN to Autoinspect deemed the vehicle to be either a junk, salvage, or in the case of an insurer, a total loss. The information in the DISPOSITION field in the Junk/Salvage section denotes what has happened to the VIN (i.e., vehicle) since it came into the possession of the business.</p>
     <table class="data-table">
       <thead>
         <tr>
@@ -845,13 +845,13 @@
   <!-- PAGE 3+: TITLE BRAND INFORMATION -->
   <div class="section">
     <div class="section-title">Title Brand Information</div>
-    <p class="section-desc">Brands are labels used to describe the status of a motor vehicle, such as "junk", "salvage", or "flood." Statuses from states are mapped to VinXtract brands for consistency within the system.</p>
+    <p class="section-desc">Brands are labels used to describe the status of a motor vehicle, such as "junk", "salvage", or "flood." Statuses from states are mapped to Autoinspect brands for consistency within the system.</p>
     <div class="title-brand-list">
       <p class="section-desc" style="margin:6px 0 12px;color:var(--mid);font-size:12px;line-height:1.5;">Detailed title brand listings are sourced from jurisdictional filings. Definitions for each brand type appear in the glossary below.</p>
       <div class="title-brand-table" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1.5px solid var(--border); border-radius: 6px; overflow: hidden;">
         <!-- Header Row -->
         <div style="background: var(--light-gray); padding: 12px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--label); border-bottom: 1px solid var(--border); border-right: 1px solid var(--border);">Brand Category</div>
-        <div style="background: var(--light-gray); padding: 12px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--label); border-bottom: 1px solid var(--border);">VinXtract Search Result</div>
+        <div style="background: var(--light-gray); padding: 12px 14px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--label); border-bottom: 1px solid var(--border);">Autoinspect Search Result</div>
         
         <!-- Brand Rows -->
         <div style="padding: 10px 14px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); font-size: 12px; color: var(--dark);"><strong>Agricultural Vehicle</strong><div style="font-size: 11px; color: var(--label); margin-top: 3px; line-height: 1.4;">These vehicles are used specifically for agricultural purposes.</div></div>
@@ -963,19 +963,19 @@
     </div>
   </div>
 
-  <!-- VinXtract Disclaimer -->
+  <!-- Autoinspect Disclaimer -->
   <div class="section">
-    <div class="section-title">VinXtract Consumer Access Product Disclaimer</div>
-    <div class="VinXtract-box">
-      <div class="VinXtract-logo">
-        <div class="VinXtract-badge">VinXtract</div>
-        <div class="VinXtract-sub">National Motor Vehicle Title Information System</div>
+    <div class="section-title">Autoinspect Consumer Access Product Disclaimer</div>
+    <div class="Autoinspect-box">
+      <div class="Autoinspect-logo">
+        <div class="Autoinspect-badge">Autoinspect</div>
+        <div class="Autoinspect-sub">National Motor Vehicle Title Information System</div>
       </div>
-      <div class="VinXtract-text">
-        <h4>About VinXtract</h4>
-        The National Motor Vehicle Title Information System (VinXtract) is an electronic system that contains information on certain automobiles titled in the United States. VinXtract is intended to serve as a reliable source of title and brand history for automobiles, but it does not contain detailed information regarding a vehicle's repair history.
+      <div class="Autoinspect-text">
+        <h4>About Autoinspect</h4>
+        The National Motor Vehicle Title Information System (Autoinspect) is an electronic system that contains information on certain automobiles titled in the United States. Autoinspect is intended to serve as a reliable source of title and brand history for automobiles, but it does not contain detailed information regarding a vehicle's repair history.
         <br><br>
-        All states, insurance companies, and junk and salvage yards are required by federal law to regularly report information to VinXtract. However, VinXtract does not contain information on all motor vehicles in the United States because some states are not yet providing their vehicle data to the system. Currently, data is provided in a variety of time frames; while some states report in real-time, other states send updates less frequently, such as once every 24 hours.
+        All states, insurance companies, and junk and salvage yards are required by federal law to regularly report information to Autoinspect. However, Autoinspect does not contain information on all motor vehicles in the United States because some states are not yet providing their vehicle data to the system. Currently, data is provided in a variety of time frames; while some states report in real-time, other states send updates less frequently, such as once every 24 hours.
         <br><br>
         Information on previous, significant vehicle damage may not be included in the system if the vehicle was never determined by an insurance company (or other appropriate entity) to be a "total loss" or branded by a state.
       </div>
@@ -984,7 +984,7 @@
 
   <!-- Footer -->
   <div class="report-footer">
-    VinXtract.com &nbsp;·&nbsp; Vehicle History Report &nbsp;·&nbsp; Powered by VinXtract
+    Autoinspect.com &nbsp;·&nbsp; Vehicle History Report &nbsp;·&nbsp; Powered by Autoinspect
   </div>
 
 </div><!-- end .page-wrap -->

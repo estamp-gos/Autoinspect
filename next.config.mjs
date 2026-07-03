@@ -7,7 +7,7 @@ const nextConfig = {
   
   // Enable image optimization
   images: {
-    domains: ['vinxtractstore.com'],
+    domains: ['autoinspect.site'],
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60,
   },

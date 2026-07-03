@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://vinxtract.com'
+  const baseUrl = 'https://autoinspect.site'
   
   return [
     {

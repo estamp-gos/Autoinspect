@@ -653,7 +653,7 @@ body {
 }
 
 .confirm-modal-btn {
-  background: #111827;
+  background: #2563eb;
   color: white;
   border: none;
   border-radius: 8px;
@@ -666,5 +666,5 @@ body {
 }
 
 .confirm-modal-btn:hover {
-  background: #000;
+  background: #1d4ed8;
 }

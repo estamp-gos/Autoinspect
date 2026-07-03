@@ -176,7 +176,7 @@ function safeFilename(reg) {
     String(reg || 'vehicle')
       .replace(/[^\w\d-]+/gi, '')
       .slice(0, 32) || 'vehicle'
-  return `VinXtract-Report-${base}.pdf`
+  return `Autoinspect-Report-${base}.pdf`
 }
 
 export async function POST(request) {

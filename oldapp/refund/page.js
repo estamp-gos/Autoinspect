@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export const metadata = {
-  title: "Refund Policy - VinXtract | Vehicle History Reports",
-  description: "Refund Policy for VinXtract vehicle history reports. Learn about our no-refund policy for digital vehicle history services.",
+  title: "Refund Policy - Autoinspect | Vehicle History Reports",
+  description: "Refund Policy for Autoinspect vehicle history reports. Learn about our no-refund policy for digital vehicle history services.",
   robots: {
     index: true,
     follow: true,
@@ -21,12 +21,12 @@ export default function RefundPolicy() {
               <Link href="/" className="flex items-center">
                 <Image
                   src="/car-logo.webp"
-                  alt="VinXtract"
+                  alt="Autoinspect"
                   width={40}
                   height={40}
                   className="mr-3"
                 />
-                <div className="text-2xl font-bold text-blue-600">VinXtract</div>
+                <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
               </Link>
             </div>
             <nav className="flex items-center space-x-6">
@@ -153,7 +153,7 @@ export default function RefundPolicy() {
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">5. What Our Service Includes</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                When you purchase a VinXtract vehicle history report for €24.99, you receive:
+                When you purchase a Autoinspect vehicle history report for €24.99, you receive:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
                 <li>Comprehensive vehicle history report based on the VIN provided</li>
@@ -255,7 +255,7 @@ export default function RefundPolicy() {
               <div className="bg-gray-50 p-6 rounded-lg mt-4">
                 <p className="text-gray-700">
                   <strong>Email:</strong> car.check.store@gmail.com<br/>
-                  <strong>Website:</strong> <Link href="https://VinXtract.com" className="text-blue-600 hover:text-blue-700">https://VinXtract.com</Link><br/>
+                  <strong>Website:</strong> <Link href="https://Autoinspect.com" className="text-blue-600 hover:text-blue-700">https://Autoinspect.com</Link><br/>
                   <strong>Response Time:</strong> 24-48 hours
                 </p>
               </div>
@@ -280,12 +280,12 @@ export default function RefundPolicy() {
             <div className="mb-4 md:mb-0 flex items-center">
               <Image
                 src="/car-logo.webp"
-                alt="VinXtract"
+                alt="Autoinspect"
                 width={32}
                 height={32}
                 className="mr-3"
               />
-              <div className="text-xl font-bold text-blue-400">VinXtract</div>
+              <div className="text-xl font-bold text-blue-400">Autoinspect</div>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">

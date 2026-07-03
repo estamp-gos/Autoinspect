@@ -1,6 +1,6 @@
 <?php
-// payments.docukit.site/vinxtract.php
-// Payment page for VinXtract (3rd party integration)
+// payments.docukit.site/autoinspect.php
+// Payment page for Autoinspect (3rd party integration)
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -41,18 +41,18 @@ $paddlePriceId = 'pri_01krk1p8r73ba0kv41bfy09k89';
 $paddleToken = 'live_4d8274c2bffeec3a2558df9da5a';
 $selectedPriceId = $paddlePriceId;
 
-// VinXtract Logo
-$vinxtractLogo = 'https://img.stitchnhide.com//upload/6a1e35e919f14.png';
+// Autoinspect Logo
+$autoinspectLogo = 'https://img.stitchnhide.com//upload/6a1e35e919f14.png';
 
 // FIXED: Payment ke baad hamesha yehi URL use hogi
-$successUrl = 'https://www.vinxtract.com/thankyou';
+$successUrl = 'https://www.autoinspect.site/thankyou';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Payment | VinXtract × DocuKit</title>
+    <title>Secure Payment | Autoinspect × DocuKit</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -134,7 +134,7 @@ $successUrl = 'https://www.vinxtract.com/thankyou';
     <div class="payment-container">
         <div class="payment-card">
             <div class="logo">
-                <img src="<?php echo $vinxtractLogo; ?>" alt="VinXtract">
+                <img src="<?php echo $autoinspectLogo; ?>" alt="Autoinspect">
                 <h2 style="color:#03045E; margin-top:10px; font-size:22px;">Secure Payment</h2>
             </div>
             
@@ -170,7 +170,7 @@ $successUrl = 'https://www.vinxtract.com/thankyou';
             
             <div class="docukit-credit">
                 <p>Secure Payments by <strong>Paddle</strong> | Powered by <strong>DocuKit</strong></p>
-                <p style="margin-top: 5px;">© VinXtract | Vehicle History Reports</p>
+                <p style="margin-top: 5px;">© Autoinspect | Vehicle History Reports</p>
             </div>
         </div>
     </div>

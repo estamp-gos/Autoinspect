@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>VinXtract — Admin Setup</title>
+  <title>Autoinspect — Admin Setup</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
@@ -131,7 +131,7 @@
             <div class="flex gap-3 items-start">
               <div class="step-num text-sm">1</div>
               <p class="text-sm pt-1" style="color:var(--muted);">
-                Go to <a href="https://sheets.new" target="_blank" style="color:var(--accent2);">sheets.new</a> — name it <strong style="color:var(--text);">VinXtract Data</strong>.
+                Go to <a href="https://sheets.new" target="_blank" style="color:var(--accent2);">sheets.new</a> — name it <strong style="color:var(--text);">Autoinspect Data</strong>.
               </p>
             </div>
             <div class="flex gap-3 items-start">
@@ -409,7 +409,7 @@ function saveOrder(data) {
 
 <script>
   const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQ0bVanKVZ3zfqGV7zApM6jDyu5PJGWvyMPADqKmZKqg-_Ol0FcOf4sD4nFT2M8t_xVg/exec";
-  const STORAGE_KEY = 'vinxtract_config';
+  const STORAGE_KEY = 'autoinspect_config';
 
   function loadExisting() {
     try {
@@ -498,7 +498,7 @@ function saveOrder(data) {
       // Using GET for saving is much more reliable for Apps Script CORS bypass
       const res = await fetch(`${config.appsScriptUrl}?${params.toString()}`);
       
-      localStorage.setItem('vinxtract_config_url', config.appsScriptUrl);
+      localStorage.setItem('autoinspect_config_url', config.appsScriptUrl);
       updatePreview(config);
       showToast('✅ Config saved! Refresh the website to see changes.', 'success');
       
@@ -512,7 +512,7 @@ function saveOrder(data) {
         headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ action: 'saveConfig', ...config })
       });
-      localStorage.setItem('vinxtract_config_url', config.appsScriptUrl);
+      localStorage.setItem('autoinspect_config_url', config.appsScriptUrl);
       updatePreview(config);
       showToast('✅ Saved! If not updating, please check Apps Script permissions.', 'info');
     }

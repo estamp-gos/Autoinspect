@@ -25,18 +25,71 @@ export default function ThankYou() {
     setDownloading(true)
 
     try {
+      const vehicleModel = String(vinReport.carModel ?? '').trim()
+      const registration = String(vinReport.vin ?? '').trim()
+      // Prefer explicit year; fall back to a 4-digit year embedded in the model string
+      let year = String(vinReport.year ?? '').trim()
+      if (!year && vehicleModel) {
+        const yearMatch = vehicleModel.match(/\b(19|20)\d{2}\b/)
+        if (yearMatch) year = yearMatch[0]
+      }
+
+      let enrichment = vinReport.enrichment
+      if (!enrichment || typeof enrichment !== 'object') {
+        if (registration && year && vehicleModel) {
+          const lookupRes = await fetch('/api/lookup-vehicle', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              registration,
+              vin: registration,
+              year,
+              vehicleModel,
+              carModel: vehicleModel,
+            }),
+          })
+
+          if (lookupRes.ok) {
+            const lookupData = await lookupRes.json()
+            if (lookupData.success && lookupData.data) {
+              enrichment = lookupData.data
+              const updated = { ...vinReport, year, enrichment }
+              setVinReport(updated)
+              try {
+                localStorage.setItem('vinReport', JSON.stringify(updated))
+              } catch {
+                /* ignore */
+              }
+            }
+          } else {
+            const errBody = await lookupRes.json().catch(() => ({}))
+            console.warn(
+              'Vehicle lookup failed, generating report with limited data:',
+              errBody.message || lookupRes.status
+            )
+          }
+        }
+      }
+
+      const mergedEnrichment = {
+        ...(enrichment || {}),
+      }
+      // Prefer Groq body style; fall back to selected vehicle type
+      if (!mergedEnrichment.bodyStyle || mergedEnrichment.bodyStyle === 'N/A') {
+        mergedEnrichment.bodyStyle = vinReport.vehicleType || 'N/A'
+      }
+
       const res = await fetch('/api/generate-report', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          vin: vinReport.vin,
-          registration: vinReport.vin,
-          carModel: vinReport.carModel,
-          vehicleModel: vinReport.carModel,
+          vin: registration,
+          registration,
+          year,
+          carModel: vehicleModel,
+          vehicleModel,
           vehicleType: vinReport.vehicleType,
-          enrichment: {
-            bodyStyle: vinReport.vehicleType,
-          },
+          enrichment: mergedEnrichment,
         }),
       })
 
@@ -53,7 +106,7 @@ export default function ThankYou() {
         String(vinReport.vin || 'vehicle')
           .replace(/[^\w\d-]+/gi, '')
           .slice(0, 32) || 'vehicle'
-      a.download = `VinXtract-Report-${safeVin}.pdf`
+      a.download = `Autoinspect-Report-${safeVin}.pdf`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
@@ -87,12 +140,12 @@ export default function ThankYou() {
             <Link href="/" className="flex items-center">
               <Image 
                 src="/car-logo.webp" 
-                alt="VinXtractStore" 
+                alt="Autoinspect" 
                 width={40}
                 height={40}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-600 font-sans">VinXtractStore</div>
+              <div className="text-2xl font-bold text-blue-600 font-sans">Autoinspect</div>
             </Link>
             
             {/* Navigation */}
@@ -138,6 +191,10 @@ export default function ThankYou() {
                   <span className="font-semibold text-gray-800 font-mono">{vinReport.vin}</span>
                 </div>
                 <div>
+                  <span className="text-xs text-gray-400 block uppercase font-sans">Model Year</span>
+                  <span className="font-semibold text-gray-800 font-sans">{vinReport.year || '—'}</span>
+                </div>
+                <div>
                   <span className="text-xs text-gray-400 block uppercase font-sans">Vehicle Model</span>
                   <span className="font-semibold text-gray-800 font-sans">{vinReport.carModel}</span>
                 </div>
@@ -175,7 +232,7 @@ export default function ThankYou() {
                 <ul className="text-blue-800 space-y-1 text-sm font-sans">
                   <li>• We also sent a notification email to <strong>{vinReport?.email || 'your email'}</strong>.</li>
                   <li>• A backup download of the report is available via email support.</li>
-                  <li>• Support is available at <strong>support@vinxtract.com</strong> 24/7.</li>
+                  <li>• Support is available at <strong>support@autoinspect.site</strong> 24/7.</li>
                 </ul>
               </div>
             </div>
@@ -190,7 +247,7 @@ export default function ThankYou() {
               Back to Home
             </Link>
             <button 
-              onClick={() => window.location.href = 'mailto:support@vinxtract.com'}
+              onClick={() => window.location.href = 'mailto:support@autoinspect.site'}
               className="bg-white text-blue-600 border-2 border-blue-600 px-8 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors font-semibold font-sans text-sm"
             >
               Contact Support
@@ -206,12 +263,12 @@ export default function ThankYou() {
             <div className="mb-4 md:mb-0 flex items-center">
               <Image 
                 src="/car-logo.webp" 
-                alt="VinXtractStore" 
+                alt="Autoinspect" 
                 width={32}
                 height={32}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-400 font-sans">VinXtractStore</div>
+              <div className="text-2xl font-bold text-blue-400 font-sans">Autoinspect</div>
             </div>
             
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm font-sans">
@@ -222,7 +279,7 @@ export default function ThankYou() {
           </div>
           
           <div className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-400 text-xs font-sans">
-            © 2015 VinXtractStore. All rights reserved. | Vehicle History Reports & VIN Checks
+            © 2015 Autoinspect. All rights reserved. | Vehicle History Reports & VIN Checks
           </div>
         </div>
       </footer>

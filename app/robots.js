@@ -5,7 +5,7 @@ export default function robots() {
       allow: '/',
       disallow: ['/api/', '/_next/'],
     },
-    sitemap: 'https://vinxtract.com/sitemap.xml',
+    sitemap: 'https://autoinspect.site/sitemap.xml',
   }
 
   

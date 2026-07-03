@@ -13,19 +13,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "VinXtractStore - #1 Vehicle History Reports | VinXtract Car Reports",
-  description: "VinXtractStore offers the most comprehensive vehicle history reports. Get instant VIN checks, accident history, mileage verification, title records, and market value analysis. Trusted by thousands of car buyers worldwide. Avoid costly mistakes with our detailed car history reports.",
-  keywords: "vinxtractstore, vinxtract store, vehicle history report, VIN check, car history, auto history report, used car report, vehicle records, accident history, mileage verification, title check, car buying, automotive history, vehicle inspection",
-  authors: [{ name: "VinXtract Team" }],
-  creator: "VinXtract",
-  publisher: "VinXtract",
+  title: "Autoinspect - #1 Vehicle History Reports | Autoinspect Car Reports",
+  description: "Autoinspect offers the most comprehensive vehicle history reports. Get instant VIN checks, accident history, mileage verification, title records, and market value analysis. Trusted by thousands of car buyers worldwide. Avoid costly mistakes with our detailed car history reports.",
+  keywords: "autoinspect, autoinspect.site, vehicle history report, VIN check, car history, auto history report, used car report, vehicle records, accident history, mileage verification, title check, car buying, automotive history, vehicle inspection",
+  authors: [{ name: "Autoinspect Team" }],
+  creator: "Autoinspect",
+  publisher: "Autoinspect",
   // Enhanced meta tags for better SERP control
-  metadataBase: new URL("https://vinxtract.com"),
+  metadataBase: new URL("https://autoinspect.site"),
   alternates: {
-    canonical: "https://vinxtract.com",
+    canonical: "https://autoinspect.site",
     languages: {
-      "en-US": "https://vinxtract.store",
-      "x-default": "https://vinxtract.store"
+      "en-US": "https://autoinspect.site",
+      "x-default": "https://autoinspect.site"
     }
   },
   robots: {
@@ -43,18 +43,18 @@ export const metadata = {
   },
   // Enhanced Open Graph for social media SERP
   openGraph: {
-    title: "VinXtractStore - #1 Vehicle History Reports | Complete Car History Check",
-    description: "Get comprehensive vehicle history reports from VinXtractStore. Check accident history, verify mileage, review title records, and get market value analysis. Trusted by car buyers worldwide.",
-    url: "https://vinxtract.store",
-    siteName: "VinXtractStore",
+    title: "Autoinspect - #1 Vehicle History Reports | Complete Car History Check",
+    description: "Get comprehensive vehicle history reports from Autoinspect. Check accident history, verify mileage, review title records, and get market value analysis. Trusted by car buyers worldwide.",
+    url: "https://autoinspect.site",
+    siteName: "Autoinspect",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/VinXtract.png",
+        url: "/Autoinspect.png",
         width: 1200,
         height: 630,
-        alt: "VinXtractStore - Vehicle History Reports",
+        alt: "Autoinspect - Vehicle History Reports",
         type: "image/png"
       },
     ],
@@ -62,11 +62,11 @@ export const metadata = {
   // Enhanced Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "VinXtractStore - #1 Vehicle History Reports",
+    title: "Autoinspect - #1 Vehicle History Reports",
     description: "Get comprehensive vehicle history reports. Check accident history, verify mileage, and get market value analysis. Trusted by car buyers worldwide.",
-    images: ["/VinXtract.png"],
-    creator: "@vinxtract",
-    site: "@vinxtract",
+    images: ["/Autoinspect.png"],
+    creator: "@autoinspect",
+    site: "@autoinspect",
   },
   // Search Engine Verification
   verification: {
@@ -101,8 +101,8 @@ export const metadata = {
   },
   // App-specific meta
   other: {
-    "apple-mobile-web-app-title": "VinXtractStore",
-    "application-name": "VinXtractStore",
+    "apple-mobile-web-app-title": "Autoinspect",
+    "application-name": "Autoinspect",
     "msapplication-TileColor": "#2563eb",
     "msapplication-TileImage": "/car-logo.webp",
     "theme-color": "#2563eb",
@@ -144,15 +144,15 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "VinXtractStore",
-              "alternateName": "VinXtract",
-              "url": "https://vinxtract.com",
-              "logo": "https://vinxtract.com/car-logo.webp",
+              "name": "Autoinspect",
+              "alternateName": "Autoinspect",
+              "url": "https://autoinspect.site",
+              "logo": "https://autoinspect.site/car-logo.webp",
               "description": "Leading provider of comprehensive vehicle history reports and VIN checks for car buyers worldwide.",
               "sameAs": [
-                "https://twitter.com/vinxtract",
-                "https://facebook.com/vinxtract",
-                "https://linkedin.com/company/vinxtract"
+                "https://twitter.com/autoinspect",
+                "https://facebook.com/autoinspect",
+                "https://linkedin.com/company/autoinspect"
               ],
               "contactPoint": {
                 "@type": "ContactPoint",
@@ -172,7 +172,7 @@ export default function RootLayout({ children }) {
                 "description": "Professional vehicle history checking service",
                 "provider": {
                   "@type": "Organization",
-                  "name": "VinXtractStore"
+                  "name": "Autoinspect"
                 },
                 "areaServed": "Worldwide",
                 "hasOfferCatalog": {
@@ -201,12 +201,12 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "VinXtractStore",
-              "url": "https://vinxtract.com",
+              "name": "Autoinspect",
+              "url": "https://autoinspect.site",
               "description": "Get comprehensive vehicle history reports and VIN checks. Uncover accident history, verify mileage, check title records, and get market value analysis.",
               "potentialAction": {
                 "@type": "SearchAction",
-                "target": "https://vinxtract.com/?vin={search_term_string}",
+                "target": "https://autoinspect.site/?vin={search_term_string}",
                 "query-input": "required name=search_term_string"
               }
             })
@@ -223,7 +223,7 @@ export default function RootLayout({ children }) {
               "mainEntity": [
                 {
                   "@type": "Question",
-                  "name": "How accurate are VinXtract reports?",
+                  "name": "How accurate are Autoinspect reports?",
                   "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Our reports are highly accurate as we source data from over 900 trusted databases including DMV records, insurance companies, auction houses, and government agencies. However, we recommend using our reports as one factor in your decision-making process."
@@ -231,7 +231,7 @@ export default function RootLayout({ children }) {
                 },
                 {
                   "@type": "Question",
-                  "name": "How long does it take to receive my VinXtract report?",
+                  "name": "How long does it take to receive my Autoinspect report?",
                   "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "Most reports are delivered within 1-2 hours via email. However, we allow up to 6-12 hours for delivery to account for any technical delays or complex data compilation requirements."
@@ -239,15 +239,15 @@ export default function RootLayout({ children }) {
                 },
                 {
                   "@type": "Question",
-                  "name": "What makes VinXtract different from competitors?",
+                  "name": "What makes Autoinspect different from competitors?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "VinXtract offers the most comprehensive database with over 1 billion data points, faster delivery times, 24/7 customer support, and competitive pricing. We also provide market value analysis and detailed damage assessments."
+                    "text": "Autoinspect offers the most comprehensive database with over 1 billion data points, faster delivery times, 24/7 customer support, and competitive pricing. We also provide market value analysis and detailed damage assessments."
                   }
                 },
                 {
                   "@type": "Question", 
-                  "name": "Do VinXtract reports cover vehicles from all countries?",
+                  "name": "Do Autoinspect reports cover vehicles from all countries?",
                   "acceptedAnswer": {
                     "@type": "Answer",
                     "text": "We currently cover vehicles from over 35 countries across North America, Europe, Oceania, Africa, and the Middle East. Our coverage is continuously expanding to include more international markets."
@@ -269,7 +269,7 @@ export default function RootLayout({ children }) {
               "description": "Comprehensive vehicle history report including accident history, mileage verification, title records, and market value analysis",
               "brand": {
                 "@type": "Brand",
-                "name": "VinXtract"
+                "name": "Autoinspect"
               },
               "offers": {
                 "@type": "Offer",
@@ -278,7 +278,7 @@ export default function RootLayout({ children }) {
                 "availability": "https://schema.org/InStock",
                 "seller": {
                   "@type": "Organization",
-                  "name": "VinXtract"
+                  "name": "Autoinspect"
                 }
               },
               "aggregateRating": {
@@ -300,7 +300,7 @@ export default function RootLayout({ children }) {
                     "@type": "Person",
                     "name": "JC"
                   },
-                  "reviewBody": "Very reassuring before buying a used vehicle. VinXtract provided a detailed and accurate report."
+                  "reviewBody": "Very reassuring before buying a used vehicle. Autoinspect provided a detailed and accurate report."
                 },
                 {
                   "@type": "Review",
@@ -313,7 +313,7 @@ export default function RootLayout({ children }) {
                     "@type": "Person",
                     "name": "Sasha"
                   },
-                  "reviewBody": "Slightly pricey, but saved me from a huge mistake. The mileage was tampered, and VinXtract caught it."
+                  "reviewBody": "Slightly pricey, but saved me from a huge mistake. The mileage was tampered, and Autoinspect caught it."
                 }
               ]
             })

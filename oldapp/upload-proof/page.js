@@ -105,12 +105,12 @@ export default function UploadProof() {
             <Link href="/" className="flex items-center">
               <Image
                 src="/car-logo.webp"
-                alt="VinXtract"
+                alt="Autoinspect"
                 width={40}
                 height={40}
                 className="mr-3"
               />
-              <div className="text-2xl font-bold text-blue-600">VinXtract</div>
+              <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
             </Link>
             <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
               Back to Home
