@@ -70,7 +70,7 @@ export async function POST(request) {
     const adminInfo = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: ['car.check.store@gmail.com'],
-      subject: `New VIN Report Request - ${vin} (${carModel}) - ${tierName} Tier - $${tierPrice}`,
+      subject: `New VIN Report Request - ${vin} (${carModel}) - ${tierName} Tier - £${tierPrice || 1}`,
       text: `
 New VIN Report Request Received
 
@@ -78,7 +78,7 @@ VIN Number: ${vin}
 Car Model: ${carModel}
 Customer Email: ${email}
 Report Tier: ${tierName}
-Price: $${tierPrice}
+Price: £${tierPrice || 1}
 Request Time: ${formattedDate}
 
 Please process this request and send the ${tierName} vehicle history report to the customer.
@@ -110,7 +110,7 @@ Please process this request and send the ${tierName} vehicle history report to t
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">Price:</td>
-                <td style="padding: 8px 0; color: #16a34a; font-weight: bold;">$${tierPrice}</td>
+                <td style="padding: 8px 0; color: #16a34a; font-weight: bold;">£${tierPrice || 1}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">Request Time:</td>

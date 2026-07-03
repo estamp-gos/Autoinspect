@@ -106,7 +106,7 @@ export const metadata = {
     "msapplication-TileImage": "/car-logo.webp",
     "theme-color": "#2563eb",
     // Enhanced SERP meta tags
-    "price": "USD 40",
+    "price": "GBP 1",
     "availability": "InStock",
     "category": "Automotive Services",
     "rating": "4.8",
@@ -162,8 +162,8 @@ export default function RootLayout({ children }) {
                 "@type": "Offer",
                 "name": "Vehicle History Report",
                 "description": "Comprehensive vehicle history report including accident history, mileage verification, title records, and market value analysis",
-                "price": "20",
-                "priceCurrency": "USD"
+                "price": "1",
+                "priceCurrency": "GBP"
               },
               "service": {
                 "@type": "Service",
@@ -272,8 +272,8 @@ export default function RootLayout({ children }) {
               },
               "offers": {
                 "@type": "Offer",
-                "price": "40",
-                "priceCurrency": "USD",
+                "price": "1",
+                "priceCurrency": "GBP",
                 "availability": "https://schema.org/InStock",
                 "seller": {
                   "@type": "Organization",

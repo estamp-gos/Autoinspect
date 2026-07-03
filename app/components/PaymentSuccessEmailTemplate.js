@@ -22,7 +22,7 @@ export default function PaymentSuccessEmailTemplate({ customerEmail, customerNam
         <p><strong>Transaction ID:</strong> {transactionId}</p>
         <p><strong>Product:</strong> {productName} - {tierName} Report</p>
         <p><strong>Amount:</strong> {currency} {amount}</p>
-        <p><strong>Report Tier:</strong> {tierName} (${tierPrice})</p>
+        <p><strong>Report Tier:</strong> {tierName} (£{tierPrice || 1})</p>
         <p><strong>Email:</strong> {customerEmail}</p>
         {vinNumber && vinNumber !== 'N/A' && <p><strong>VIN:</strong> {vinNumber}</p>}
       </div>

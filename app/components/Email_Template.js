@@ -20,7 +20,7 @@ export default function Email_Template({vin , email, carModel, tierName, tierPri
         border: '1px solid #e5e7eb'
       }}>
         <p><strong>Report Type:</strong> {tierName}</p>
-        <p><strong>Price:</strong> ${tierPrice}</p>
+        <p><strong>Price:</strong> £{tierPrice || 1}</p>
         <p><strong>VIN:</strong> {vin}</p>
         <p><strong>Email:</strong> {email}</p>
       </div>
@@ -40,7 +40,7 @@ export default function Email_Template({vin , email, carModel, tierName, tierPri
             fontWeight: 'bold',
           }}
         >
-          🔗 Complete Payment - ${tierPrice}
+          🔗 Complete Payment - £{tierPrice || 1}
         </a>
       </p>
       

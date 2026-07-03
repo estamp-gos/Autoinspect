@@ -17,7 +17,7 @@ export default function Pricing() {
   const PRICING_TIERS = {
     basic: {
       name: 'Basic',
-      price: 30,
+      price: 1,
       priceId: 'pri_01k8bkwee1djsx23kqk4c3qjgb',
       wiseLink: 'https://wise.com/pay/r/jR3shZGEJKRKeNw',
       description: 'Compact & Efficient',
@@ -25,7 +25,7 @@ export default function Pricing() {
     },
     standard: {
       name: 'Standard',
-      price: 50,
+      price: 1,
       priceId: 'pri_01k8bm1n7k6kdkb62d0e5r1nha',
       wiseLink: 'https://wise.com/pay/r/9BIjpmR3Q1XTuow',
       description: 'Classic & Comfortable',
@@ -33,13 +33,15 @@ export default function Pricing() {
     },
     premium: {
       name: 'Premium',
-      price: 70,
+      price: 1,
       priceId: 'pri_01k8bm2ygfy97ehkedx0361ynh',
       wiseLink: 'https://wise.com/pay/r/3z3m7dxtCGb6A6g',
       description: 'Rugged & Powerful',
       features: ['Full accident history', 'Complete ownership records', 'Mileage verification', 'Title information', 'Safety recalls', 'Market value analysis', 'Detailed damage assessment']
     }
   }
+
+  const formatPrice = (price) => `£${price}`
 
   // Paddle Configuration
   const CONFIG = {
@@ -313,7 +315,7 @@ export default function Pricing() {
                   
                   <div className="mb-8">
                     <div className="flex items-center justify-center mb-2">
-                      <span className="text-5xl font-bold text-blue-600">${tier.price}</span>
+                      <span className="text-5xl font-bold text-blue-600">{formatPrice(tier.price)}</span>
                     </div>
                     <p className="text-gray-600 text-sm">One-time payment</p>
                   </div>
@@ -423,7 +425,7 @@ export default function Pricing() {
               What is Included in Every Report
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              For $40, you get a comprehensive vehicle history analysis with data from multiple trusted sources.
+              For £1, you get a comprehensive vehicle history analysis with data from multiple trusted sources.
             </p>
           </div>
 
@@ -570,7 +572,7 @@ export default function Pricing() {
             {[
               {
                 question: "What's the difference between the three tiers?",
-                answer: "Basic ($30) includes essential information like accident history, ownership records, and mileage checks. Standard ($50) adds complete title information and safety recalls. Premium ($70) includes everything plus market value analysis and detailed damage assessment."
+                answer: "Basic (£1) includes essential information like accident history, ownership records, and mileage checks. Standard (£1) adds complete title information and safety recalls. Premium (£1) includes everything plus market value analysis and detailed damage assessment."
               },
               {
                 question: "Which tier should I choose?",
@@ -617,14 +619,14 @@ export default function Pricing() {
               onClick={openModal}
               className="bg-white text-blue-600 px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg inline-block"
             >
-              Get Started - From ${PRICING_TIERS.basic.price}
+              Get Started - From {formatPrice(PRICING_TIERS.basic.price)}
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
             <div className="text-center">
               <div className="font-semibold text-white">Three pricing options</div>
-              <div className="text-blue-100">$30 - $70 per report</div>
+              <div className="text-blue-100">£1 per report</div>
             </div>
             <div className="text-center">
               <div className="font-semibold text-white">Fast delivery: 6-12 hours</div>

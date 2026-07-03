@@ -6,7 +6,7 @@ function buildReminderHtml({ vin, email, carModel, tierName, tierPrice }) {
   const paymentLink =
     'https://pay.paddle.io/hsc_01k34catt2jk8687d4myd9c1nw_7nacyast8w4bwcs65b81ep50f0ysnpj3'
   const reportType = tierName || 'Standard'
-  const price = tierPrice != null ? `$${tierPrice}` : ''
+  const price = tierPrice != null ? `£${tierPrice}` : '£1'
 
   return `
     <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">

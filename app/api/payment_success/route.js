@@ -66,7 +66,7 @@ export async function POST(request) {
       const customData = eventData.data?.custom_data || {};
       const vinNumber = customData.vin || 'N/A';
       const tierName = customData.tierName || 'Standard';
-      const tierPrice = customData.tierPrice || 50;
+      const tierPrice = customData.tierPrice || 1;
       const customerEmailFromCustomData = customData.email;
 
       if (customerId) {
@@ -104,7 +104,7 @@ export async function POST(request) {
                       <p><strong>Transaction ID:</strong> ${transactionId}</p>
                       <p><strong>Product:</strong> ${productName}</p>
                       <p><strong>Amount:</strong> ${currency} ${(amount / 100).toFixed(2)}</p>
-                      <p><strong>Report Tier:</strong> ${tierName} ($${tierPrice})</p>
+                      <p><strong>Report Tier:</strong> ${tierName} (£${tierPrice})</p>
                       <p><strong>Customer Email:</strong> ${customerEmail}</p>
                       <p><strong>Customer Name:</strong> ${customerName}</p>
                       <p><strong>VIN:</strong> ${vinNumber}</p>
@@ -153,7 +153,7 @@ export async function POST(request) {
                       <p><strong>Transaction ID:</strong> ${transactionId}</p>
                       <p><strong>Product:</strong> ${productName}</p>
                       <p><strong>Amount:</strong> ${currency} ${(amount / 100).toFixed(2)}</p>
-                      <p><strong>Report Tier:</strong> ${tierName} ($${tierPrice})</p>
+                      <p><strong>Report Tier:</strong> ${tierName} (£${tierPrice})</p>
                       <p><strong>Customer Email:</strong> ${customerEmailFromCustomData}</p>
                       <p><strong>Customer Name:</strong> ${customData.name || 'Valued Customer'}</p>
                       <p><strong>VIN:</strong> ${vinNumber}</p>
