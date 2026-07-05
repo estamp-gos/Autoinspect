@@ -1,6 +1,19 @@
 import nodemailer from 'nodemailer'
 import { Resend } from 'resend'
 import EmailTemplate from '../../components/Email_Template'
+import { REMINDER_EXCLUDED_EMAILS } from '@/lib/paymentConfig'
+
+function isReminderExcluded(email) {
+  const normalized = email.trim().toLowerCase()
+  const excluded = [
+    ...REMINDER_EXCLUDED_EMAILS,
+    process.env.EMAIL_USER?.trim(),
+  ]
+    .filter(Boolean)
+    .map((value) => value.toLowerCase())
+
+  return excluded.includes(normalized)
+}
 
 function buildReminderHtml({ vin, email, carModel, tierName, tierPrice }) {
   const paymentLink =
@@ -103,6 +116,14 @@ export async function POST(request) {
       { error: 'vin and email are required' },
       { status: 400 }
     )
+  }
+
+  if (isReminderExcluded(email)) {
+    return Response.json({
+      success: true,
+      message: 'Reminder skipped for admin email',
+      skipped: true,
+    })
   }
 
   const errors = []
