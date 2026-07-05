@@ -52,7 +52,7 @@ export default function PaypalModal({ isOpen, onClose, onSubscribe, orderData = 
       onSubscribe()
     } catch (error) {
       console.error('Payment form save failed:', error)
-      alert(error.message || 'Failed to save payment details. Please try again.')
+      alert('Something went wrong. Please try again.')
     } finally {
       setIsSaving(false)
     }

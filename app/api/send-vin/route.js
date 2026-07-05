@@ -1,10 +1,47 @@
 import nodemailer from 'nodemailer';
 import { NextResponse } from 'next/server';
+import { ADMIN_NOTIFICATION_EMAIL } from '@/lib/paymentConfig';
+
+async function notifyViaAppsScript(payload) {
+  const appsScriptUrl = process.env.GOOGLE_APPS_SCRIPT_URL;
+  if (!appsScriptUrl) {
+    return { ok: false, reason: 'GOOGLE_APPS_SCRIPT_URL not set' };
+  }
+
+  const response = await fetch(appsScriptUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'notifyFormSubmission', ...payload }),
+    redirect: 'follow',
+  });
+
+  const text = await response.text();
+  let result = { success: response.ok };
+
+  try {
+    result = JSON.parse(text);
+  } catch {
+    result = { success: response.ok, raw: text };
+  }
+
+  if (!response.ok || result.success === false) {
+    return {
+      ok: false,
+      reason: result.error || 'Apps Script notification failed',
+    };
+  }
+
+  if (result.emailSent === false && result.emailError) {
+    console.warn('Form saved but email notification failed:', result.emailError);
+  }
+
+  return { ok: true, provider: 'google-apps-script', emailSent: result.emailSent !== false };
+}
 
 export async function POST(request) {
   try {
     
-    const { vin, email, carModel, tier, tierName, tierPrice } = await request.json();
+    const { vin, email, carModel, year, tier, tierName, tierPrice, vehicleType } = await request.json();
 
     // Validate input
     if (!vin || !email || !carModel) {
@@ -25,21 +62,69 @@ export async function POST(request) {
       );
     }
 
-    // Check for email credentials
+    const formattedDate = new Date().toLocaleString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      timeZoneName: 'short'
+    });
+
+    const notificationPayload = {
+      vin,
+      email,
+      carModel,
+      year: year || '',
+      tierName: tierName || tier || 'Standard',
+      tierPrice: tierPrice ?? 1,
+      vehicleType: vehicleType || '',
+      timestamp: new Date().toISOString(),
+      formattedDate,
+    };
+
+    // Check for email credentials — fall back to Google Apps Script when Gmail is not configured
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+      const appsScriptResult = await notifyViaAppsScript(notificationPayload);
+
+      if (appsScriptResult.ok) {
+        return NextResponse.json({
+          success: true,
+          message: 'VIN report request submitted successfully. You will receive your report within 6-12 hours.',
+          provider: appsScriptResult.provider,
+          emailSent: appsScriptResult.emailSent,
+        });
+      }
+
+      const mailPermissionError = /MailApp\.sendEmail|script\.send_mail/i.test(
+        appsScriptResult.reason || ''
+      );
+
+      if (mailPermissionError) {
+        return NextResponse.json({
+          success: true,
+          message: 'VIN report request submitted successfully. You will receive your report within 6-12 hours.',
+          provider: 'google-apps-script',
+          emailSent: false,
+        });
+      }
+
       if (process.env.NODE_ENV === 'development') {
-        console.warn('⚠️ Missing email credentials (EMAIL_USER / EMAIL_PASS). Simulating successful send-vin in development mode.');
+        console.warn('⚠️ Missing email credentials and Apps Script fallback failed. Simulating send-vin in development mode.');
         return NextResponse.json({
           success: true,
           message: 'VIN report request simulated successfully (Development Mode).',
-          isMock: true
+          isMock: true,
+          fallbackError: appsScriptResult.reason,
         });
       }
+
       return NextResponse.json({
         success: false,
-        error: 'Missing email credentials',
+        error: 'Missing email credentials and Apps Script notification failed',
+        details: appsScriptResult.reason,
         hasEmailUser: !!process.env.EMAIL_USER,
-        hasEmailPass: !!process.env.EMAIL_PASS
+        hasEmailPass: !!process.env.EMAIL_PASS,
       }, { status: 500 });
     }
 
@@ -55,27 +140,20 @@ export async function POST(request) {
     // Test the connection first
     await transporter.verify();
 
-    // Current timestamp
-    const timestamp = new Date().toISOString();
-    const formattedDate = new Date().toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      timeZoneName: 'short'
-    });
+    const timestamp = notificationPayload.timestamp;
 
     // Send notification email to admin
     const adminInfo = await transporter.sendMail({
       from: process.env.EMAIL_USER,
-      to: ['car.check.store@gmail.com'],
+      to: [ADMIN_NOTIFICATION_EMAIL],
       subject: `New VIN Report Request - ${vin} (${carModel}) - ${tierName} Tier - £${tierPrice || 1}`,
       text: `
 New VIN Report Request Received
 
 VIN Number: ${vin}
 Car Model: ${carModel}
+Model Year: ${year || 'N/A'}
+Vehicle Type: ${vehicleType || 'N/A'}
 Customer Email: ${email}
 Report Tier: ${tierName}
 Price: £${tierPrice || 1}
@@ -99,6 +177,14 @@ Please process this request and send the ${tierName} vehicle history report to t
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">Car Model:</td>
                 <td style="padding: 8px 0; color: #6b7280;">${carModel}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Model Year:</td>
+                <td style="padding: 8px 0; color: #6b7280;">${year || 'N/A'}</td>
+              </tr>
+              <tr>
+                <td style="padding: 8px 0; font-weight: bold; color: #374151;">Vehicle Type:</td>
+                <td style="padding: 8px 0; color: #6b7280;">${vehicleType || 'N/A'}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">Customer Email:</td>

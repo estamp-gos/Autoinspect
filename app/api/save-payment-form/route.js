@@ -74,18 +74,35 @@ export async function POST(request) {
     }
 
     if (!response.ok || result.success === false) {
+      const errorMessage = String(result.error || result.message || '');
+
+      // Older Apps Script deployments may save the sheet but fail on MailApp authorization.
+      if (/MailApp\.sendEmail|script\.send_mail/i.test(errorMessage)) {
+        console.warn('Payment form saved but email notification failed:', errorMessage);
+        return NextResponse.json({
+          success: true,
+          message: 'Payment form saved successfully',
+          emailSent: false,
+        });
+      }
+
       return NextResponse.json(
         {
           success: false,
-          message: result.error || 'Failed to save payment form to Google Sheets',
+          message: errorMessage || 'Failed to save payment form to Google Sheets',
         },
         { status: 500 }
       );
     }
 
+    if (result.emailSent === false && result.emailError) {
+      console.warn('Payment form saved but email notification failed:', result.emailError);
+    }
+
     return NextResponse.json({
       success: true,
       message: 'Payment form saved successfully',
+      emailSent: result.emailSent !== false,
     });
   } catch (error) {
     console.error('save-payment-form error:', error);

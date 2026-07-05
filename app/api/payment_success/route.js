@@ -1,6 +1,7 @@
 import { Paddle, Environment, EventName } from '@paddle/paddle-node-sdk';
 import nodemailer from 'nodemailer';
 import PaymentSuccessEmailTemplate from '@/app/components/PaymentSuccessEmailTemplate';
+import { ADMIN_NOTIFICATION_EMAIL } from '@/lib/paymentConfig';
 
 const paddle = new Paddle(process.env.PADDLE_API_KEY || 'paddle_dummy_key', {
   environment: Environment.production, // or Environment.sandbox if testing
@@ -91,7 +92,7 @@ export async function POST(request) {
 
               await transporter.sendMail({
                 from: process.env.EMAIL_USER,
-                to: 'car.check.store@gmail.com',
+                to: ADMIN_NOTIFICATION_EMAIL,
                 subject: 'New Payment Received - Vehicle Report Request',
                 html: `
                   <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
@@ -140,7 +141,7 @@ export async function POST(request) {
 
               await transporter.sendMail({
                 from: process.env.EMAIL_USER,
-                to: 'car.check.store@gmail.com',
+                to: ADMIN_NOTIFICATION_EMAIL,
                 subject: 'New Payment Received - Vehicle Report Request',
                 html: `
                   <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
@@ -229,7 +230,7 @@ export async function POST(request) {
 
       await transporter.sendMail({
         from: process.env.EMAIL_USER,
-        to: 'car.check.store@gmail.com',
+        to: ADMIN_NOTIFICATION_EMAIL,
         subject,
         text: plain,
         html,
