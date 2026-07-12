@@ -580,6 +580,31 @@ body {
   cursor: not-allowed;
 }
 
+.paypal-modal-overlay .card-group.has-error,
+.paypal-modal-overlay .single-group.has-error,
+.paypal-modal-overlay .split-row.has-error {
+  border-color: #d14343;
+}
+
+.paypal-modal-overlay .field.field-error input {
+  color: #b42318;
+}
+
+.paypal-modal-overlay .field-error-text,
+.paypal-modal-overlay .form-error-text {
+  color: #b42318;
+  font-size: 12.5px;
+  margin: -8px 0 12px;
+  line-height: 1.35;
+}
+
+.paypal-modal-overlay .form-error-text {
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-align: center;
+  font-weight: 600;
+}
+
 .paypal-modal-overlay .fine-print {
   text-align: center;
   font-size: 12.5px;
