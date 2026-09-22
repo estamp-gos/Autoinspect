@@ -288,10 +288,9 @@ export default function App() {
     }
   }
 
-  // Function to validate VIN input
+  // Accept registration numbers without VIN-specific formatting or length validation.
   const handleVinChange = (e) => {
-    const value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '')
-    setVinInput(value)
+    setVinInput(e.target.value)
   }
 
   return (
@@ -490,31 +489,17 @@ export default function App() {
                     </div>
                     <div className="flex-1">
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        1. Enter VIN Number
+                        1. Enter Registration Number
                       </label>
                       <input
                         id="vin-input-field"
                         type="text"
-                        placeholder="Enter 17-digit VIN"
+                        placeholder="Enter registration number"
                         value={vinInput}
                         onChange={handleVinChange}
-                        maxLength="17"
                         className="w-full text-gray-700 px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-lg font-semibold transition-all hover:border-blue-300"
                         required
                       />
-                      <div className="mt-2 flex justify-between items-center text-sm">
-                        <span className="text-gray-500">
-                          {vinInput.length}/17 characters
-                        </span>
-                        {vinInput.length === 17 && (
-                          <span className="text-green-600 font-semibold flex items-center">
-                            <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                            Valid
-                          </span>
-                        )}
-                      </div>
                     </div>
                   </div>
 
@@ -1080,14 +1065,14 @@ export default function App() {
               <div>
                 <input
                   type="text"
-                  placeholder="Enter VIN number"
+                  placeholder="Enter registration number"
                   value={vinInput}
                   onChange={handleVinChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-lg"
                   required
                 />
                 <div className="mt-2 text-sm text-gray-600">
-                  VIN number entered
+                  Registration number entered
                 </div>
               </div>
 
