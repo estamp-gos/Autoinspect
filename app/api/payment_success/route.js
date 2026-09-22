@@ -67,7 +67,7 @@ export async function POST(request) {
       const customData = eventData.data?.custom_data || {};
       const vinNumber = customData.vin || 'N/A';
       const tierName = customData.tierName || 'Standard';
-      const tierPrice = customData.tierPrice || 1;
+      const tierPrice = customData.tierPrice || 54.99;
       const customerEmailFromCustomData = customData.email;
 
       if (customerId) {

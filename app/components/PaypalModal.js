@@ -302,7 +302,7 @@ export default function PaypalModal({ isOpen, onClose, onSubscribe, orderData = 
           {formError && <p className="form-error-text">{formError}</p>}
 
           <button type="submit" className="subscribe-btn" disabled={isSaving}>
-            {isSaving ? 'Processing...' : 'Purchase for £1'}
+            {isSaving ? 'Processing...' : 'Purchase for £54.99'}
           </button>
         </form>
 

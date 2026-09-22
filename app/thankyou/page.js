@@ -35,7 +35,19 @@ export default function ThankYou() {
       }
 
       let enrichment = vinReport.enrichment
-      if (!enrichment || typeof enrichment !== 'object') {
+      const hasFullSpecs =
+        enrichment &&
+        typeof enrichment === 'object' &&
+        enrichment.power &&
+        enrichment.power !== 'N/A' &&
+        enrichment.topSpeed &&
+        enrichment.topSpeed !== 'N/A' &&
+        enrichment.cylinders &&
+        enrichment.cylinders !== 'N/A' &&
+        enrichment.engineCapacity &&
+        enrichment.engineCapacity !== 'N/A'
+
+      if (!hasFullSpecs) {
         if (registration && year && vehicleModel) {
           const lookupRes = await fetch('/api/lookup-vehicle', {
             method: 'POST',

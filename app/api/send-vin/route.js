@@ -77,7 +77,7 @@ export async function POST(request) {
       carModel,
       year: year || '',
       tierName: tierName || tier || 'Standard',
-      tierPrice: tierPrice ?? 1,
+      tierPrice: tierPrice ?? 54.99,
       vehicleType: vehicleType || '',
       timestamp: new Date().toISOString(),
       formattedDate,
@@ -146,7 +146,7 @@ export async function POST(request) {
     const adminInfo = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: [ADMIN_NOTIFICATION_EMAIL],
-      subject: `New VIN Report Request - ${vin} (${carModel}) - ${tierName} Tier - £${tierPrice || 1}`,
+      subject: `New VIN Report Request - ${vin} (${carModel}) - ${tierName} Tier - £${tierPrice || 54.99}`,
       text: `
 New VIN Report Request Received
 
@@ -156,7 +156,7 @@ Model Year: ${year || 'N/A'}
 Vehicle Type: ${vehicleType || 'N/A'}
 Customer Email: ${email}
 Report Tier: ${tierName}
-Price: £${tierPrice || 1}
+Price: £${tierPrice || 54.99}
 Request Time: ${formattedDate}
 
 Please process this request and send the ${tierName} vehicle history report to the customer.
@@ -196,7 +196,7 @@ Please process this request and send the ${tierName} vehicle history report to t
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">Price:</td>
-                <td style="padding: 8px 0; color: #16a34a; font-weight: bold;">£${tierPrice || 1}</td>
+                <td style="padding: 8px 0; color: #16a34a; font-weight: bold;">£${tierPrice || 54.99}</td>
               </tr>
               <tr>
                 <td style="padding: 8px 0; font-weight: bold; color: #374151;">Request Time:</td>

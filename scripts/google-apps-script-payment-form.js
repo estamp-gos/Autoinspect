@@ -195,7 +195,7 @@ function buildFormSubmissionEmailBody_(data, formattedDate) {
     'Model Year: ' + (data.year || 'N/A'),
     'Vehicle Type: ' + (data.vehicleType || 'N/A'),
     'Report Tier: ' + (data.tierName || 'N/A'),
-    'Price: £' + (data.tierPrice != null ? data.tierPrice : '1'),
+    'Price: £' + (data.tierPrice != null ? data.tierPrice : '54.99'),
     'Submitted At: ' + formattedDate,
   ].join('\n');
 }

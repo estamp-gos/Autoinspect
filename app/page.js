@@ -12,6 +12,7 @@ export default function App() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showCheckoutModal, setShowCheckoutModal] = useState(false)
   const [checkoutLoading, setCheckoutLoading] = useState(false)
+  const [nonRefundableAccepted, setNonRefundableAccepted] = useState(false)
   const [selectedTier, setSelectedTier] = useState('standard')
   const [vehicleType, setVehicleType] = useState('Car')
   const [showPaypalModal, setShowPaypalModal] = useState(false)
@@ -21,7 +22,7 @@ export default function App() {
   const PRICING_TIERS = {
     basic: {
       name: 'Basic',
-      price: 1,
+      price: 54.99,
       currency: '£',
       wiseLink: 'https://wise.com/pay/r/jR3shZGEJKRKeNw',
       description: 'Compact & Efficient',
@@ -29,7 +30,7 @@ export default function App() {
     },
     standard: {
       name: 'Standard',
-      price: 1,
+      price: 54.99,
       currency: '£',
       wiseLink: 'https://wise.com/pay/r/9BIjpmR3Q1XTuow',
       description: 'Classic & Comfortable',
@@ -37,7 +38,7 @@ export default function App() {
     },
     premium: {
       name: 'Premium',
-      price: 1,
+      price: 54.99,
       currency: '£',
       wiseLink: 'https://wise.com/pay/r/3z3m7dxtCGb6A6g',
       description: 'Rugged & Powerful',
@@ -114,16 +115,22 @@ export default function App() {
     }
   }
 
-  // Proceed to PayPal checkout modal
+  // Redirect to the Freemius checkout page
   const proceedToPayment = () => {
+    if (!nonRefundableAccepted) {
+      return
+    }
+
     setShowCheckoutModal(false)
-    setShowPaypalModal(true)
+    window.location.href = 'https://checkout.freemius.com/product/27824/plan/61097/'
+    // setShowPaypalModal(true)
   }
 
   // Close checkout modal
   const closeCheckoutModal = () => {
     setShowCheckoutModal(false)
     setCheckoutLoading(false)
+    setNonRefundableAccepted(false)
   }
 
   const currentDate = new Date();
@@ -381,6 +388,10 @@ export default function App() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <h2 className="text-center text-sm sm:text-base font-semibold text-gray-700 max-w-3xl mx-auto mb-10 animate-fadeInUp">
+            To protect vehicle information and prevent fraud, only the registered owner may request a vehicle history report.
+          </h2>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             {/* Left side - Content */}
             <div className="text-center lg:text-left">
@@ -408,7 +419,7 @@ export default function App() {
                   </div>
                   <div className="text-center">
                     <div className="text-3xl mb-2 animate-pulse">💰</div>
-                    <div className="text-sm font-semibold text-gray-900">From £1</div>
+                    <div className="text-sm font-semibold text-gray-900">From £54.99</div>
                     <div className="text-xs text-gray-600">One-time</div>
                   </div>
                   <div className="text-center">
@@ -453,7 +464,7 @@ export default function App() {
                       className="w-full text-gray-700 px-4 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-lg font-semibold transition-all hover:border-blue-300 bg-white"
                       required
                     >
-                      {Object.entries(PRICING_TIERS).map(([key, tier]) => (
+                      {Object.entries({ standard: PRICING_TIERS.standard }).map(([key, tier]) => (
                         <option key={key} value={key}>
                           {tier.name} - {formatPrice(tier.price)}
                         </option>
@@ -740,7 +751,7 @@ export default function App() {
 
                   {/* Price Badge - Below Reviews */}
                   <div className="mt-4 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full shadow-xl animate-pulse inline-block">
-                    <span className="text-sm font-bold">From £1</span>
+                    <span className="text-sm font-bold">From £54.99</span>
                   </div>
                 </div>
               </div>
@@ -2062,15 +2073,22 @@ export default function App() {
               </p>
             </div>
 
-            <p style={{ marginBottom: '20px', color: '#6b7280', fontSize: '14px' }}>
-              Click below to proceed to secure payment. Your vehicle history report ({PRICING_TIERS[selectedTier].name} tier) will be delivered to your email within 6-12 hours (usually 1-2 hours).
-            </p>
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', marginBottom: '20px', color: '#4b5563', fontSize: '14px', lineHeight: '1.5', cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={nonRefundableAccepted}
+                onChange={(e) => setNonRefundableAccepted(e.target.checked)}
+                style={{ marginTop: '3px', width: '16px', height: '16px', flexShrink: 0, accentColor: '#2563eb' }}
+              />
+              <span>I understand that this is a non-refundable service.</span>
+            </label>
 
             {!checkoutLoading ? (
               <>
                 <button
                   onClick={proceedToPayment}
-                  style={modalStyles.proceedButton}
+                  disabled={!nonRefundableAccepted}
+                  style={{ ...modalStyles.proceedButton, opacity: nonRefundableAccepted ? 1 : 0.5, cursor: nonRefundableAccepted ? 'pointer' : 'not-allowed' }}
                 >
                   Proceed to Payment - {formatPrice(PRICING_TIERS[selectedTier].price)}
                 </button>
