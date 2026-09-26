@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-labelledby="mark-title">
+  <title id="mark-title">Autoinspect</title>
+  <path fill="#711d1c" d="M12 28c0-9 7-16 16-16h136c9 0 16 7 16 16v72c0 42-38 67-92 92-54-25-92-50-92-92z"/>
+  <path d="m46 96 24 24 76-76" fill="none" stroke="#fff8f5" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
+  <path d="M50 148h92" fill="none" stroke="#fff8f5" stroke-linecap="round" stroke-width="11"/>
+</svg>

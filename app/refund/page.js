@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { SiteFooter, SiteHeader } from '../components/SiteChrome'
 
 export const metadata = {
   title: "Refund Policy - Autoinspect | Vehicle History Reports",
@@ -12,36 +12,14 @@ export const metadata = {
 
 export default function RefundPolicy() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/car-logo.webp"
-                  alt="Autoinspect"
-                  width={40}
-                  height={40}
-                  className="mr-3"
-                />
-                <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
-              </Link>
-            </div>
-            <nav className="flex items-center space-x-6">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">Back to Home</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="legal-page">
+      <SiteHeader />
+      <div className="legal-title-band"><div className="legal-title-inner"><span>Order information</span><h1>Refund Policy</h1><p>When a refund may be available and how to request one.</p></div></div>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Refund Policy</h1>
-          
-          <p className="text-gray-600 mb-8">
+      <main className="legal-main">
+        <div className="legal-content">
+          <p className="legal-meta">
             <strong>Effective Date:</strong> November 4, 2025<br/>
             <strong>Last Updated:</strong> November 4, 2025
           </p>
@@ -57,17 +35,17 @@ export default function RefundPolicy() {
               <div className="ml-3">
                 <h2 className="text-lg font-medium text-blue-800">14-Day Refund Policy</h2>
                 <div className="mt-2 text-sm text-blue-700">
-                  <p><strong>CarCheck offers refunds within 14 days of purchase under specific conditions.</strong> As a digital service provider, we understand that certain circumstances may warrant a refund despite immediate report delivery.</p>
+                  <p><strong>Autoinspect offers refunds within 14 days of purchase under specific conditions.</strong> As a digital service provider, we understand that certain circumstances may warrant a refund despite immediate report delivery.</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="space-y-8">
+          <div className="legal-sections">
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Refund Policy Overview</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                CarCheck provides refunds within <strong>14 days of purchase</strong> under specific circumstances outlined below. While our service provides immediate digital delivery of comprehensive vehicle history information, we recognize that certain situations may warrant a refund.
+                Autoinspect provides refunds within <strong>14 days of purchase</strong> under specific circumstances outlined below. While our service provides immediate digital delivery of comprehensive vehicle history information, we recognize that certain situations may warrant a refund.
               </p>
               <p className="text-gray-700 leading-relaxed">
                 This policy balances the nature of our digital service delivery with fair customer protection and reasonable business practices.
@@ -265,7 +243,7 @@ export default function RefundPolicy() {
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">14. Acknowledgment</h2>
               <div className="bg-blue-50 border-l-4 border-blue-400 p-6">
                 <p className="text-blue-800 font-medium">
-                  By purchasing a CarCheck vehicle history report, you acknowledge that you have read, understood, and agree to this refund policy. You understand that refunds are available within 14 days under the specific qualifying conditions outlined above.
+                  By purchasing an Autoinspect vehicle history report, you acknowledge that you have read, understood, and agree to this refund policy. You understand that refunds are available within 14 days under the specific qualifying conditions outlined above.
                 </p>
               </div>
             </section>
@@ -273,33 +251,7 @@ export default function RefundPolicy() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0 flex items-center">
-              <Image
-                src="/car-logo.webp"
-                alt="Autoinspect"
-                width={32}
-                height={32}
-                className="mr-3"
-              />
-              <div className="text-xl font-bold text-blue-400">Autoinspect</div>
-            </div>
-
-            <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
-              <Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-blue-400 transition-colors">Terms & Conditions</Link>
-              <Link href="/refund" className="hover:text-blue-400 transition-colors font-semibold">Refund Policy</Link>
-            </div>
-          </div>
-
-          <div className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-400">
-            © 2015 CarCheck. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

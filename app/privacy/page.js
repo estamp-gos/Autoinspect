@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { SiteFooter, SiteHeader } from '../components/SiteChrome'
 
 export const metadata = {
   title: "Privacy Policy - Autoinspect | Vehicle History Reports",
@@ -12,45 +12,23 @@ export const metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/car-logo.webp"
-                  alt="Autoinspect"
-                  width={40}
-                  height={40}
-                  className="mr-3"
-                />
-                <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
-              </Link>
-            </div>
-            <nav className="flex items-center space-x-6">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">Back to Home</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="legal-page">
+      <SiteHeader />
+      <div className="legal-title-band"><div className="legal-title-inner"><span>Privacy &amp; data</span><h1>Privacy Policy</h1><p>How we collect, use, and protect information when you use Autoinspect.</p></div></div>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Privacy Policy</h1>
-          
-          <p className="text-gray-600 mb-8">
+      <main className="legal-main">
+        <div className="legal-content">
+          <p className="legal-meta">
             <strong>Effective Date:</strong> November 4, 2025<br/>
             <strong>Last Updated:</strong> November 4, 2025
           </p>
 
-          <div className="space-y-8">
+          <div className="legal-sections">
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Introduction</h2>
               <p className="text-gray-700 leading-relaxed">
-                CarCheck (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our vehicle history report services.
+                Autoinspect (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our vehicle history report services.
               </p>
             </section>
 
@@ -196,33 +174,7 @@ export default function PrivacyPolicy() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0 flex items-center">
-              <Image
-                src="/car-logo.webp"
-                alt="Autoinspect"
-                width={32}
-                height={32}
-                className="mr-3"
-              />
-              <div className="text-xl font-bold text-blue-400">Autoinspect</div>
-            </div>
-
-            <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
-              <Link href="/privacy" className="hover:text-blue-400 transition-colors font-semibold">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-blue-400 transition-colors">Terms & Conditions</Link>
-              <Link href="/refund" className="hover:text-blue-400 transition-colors">Refund Policy</Link>
-            </div>
-          </div>
-
-          <div className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-400">
-            © 2015 CarCheck. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

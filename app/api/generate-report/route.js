@@ -201,6 +201,7 @@ function applyPlaceholders(html, map) {
 
 async function resolveLogoSrc(cwd) {
   const logoCandidates = [
+    path.join(cwd, 'public', 'autoinspect-logo.svg'),
     path.join(cwd, 'report-template', 'car-logo.png'),
     path.join(cwd, 'public', 'car-logo.webp'),
     path.join(cwd, 'public', 'car-logo.png'),
@@ -211,7 +212,9 @@ async function resolveLogoSrc(cwd) {
       const data = await fs.readFile(candidate)
       const ext = path.extname(candidate).toLowerCase()
       const mime =
-        ext === '.webp'
+        ext === '.svg'
+          ? 'image/svg+xml'
+          : ext === '.webp'
           ? 'image/webp'
           : ext === '.png'
             ? 'image/png'

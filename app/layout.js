@@ -86,25 +86,25 @@ export const metadata = {
   // Enhanced favicon configuration
   icons: {
     icon: [
-      { url: "/car-logo.webp", type: "image/webp" }
+      { url: "/autoinspect-mark.svg", type: "image/svg+xml" }
     ],
-    shortcut: "/car-logo.webp",
+    shortcut: "/autoinspect-mark.svg",
     apple: [
-      { url: "/car-logo.webp", sizes: "180x180", type: "image/webp" },
-      { url: "/car-logo.webp", sizes: "152x152", type: "image/webp" }
+      { url: "/autoinspect-mark.svg", sizes: "180x180", type: "image/svg+xml" },
+      { url: "/autoinspect-mark.svg", sizes: "152x152", type: "image/svg+xml" }
     ],
     other: [
-      { rel: "icon", url: "/car-logo.webp", sizes: "16x16", type: "image/webp" },
-      { rel: "mask-icon", url: "/car-logo.webp", color: "#2563eb" }
+      { rel: "icon", url: "/autoinspect-mark.svg", sizes: "any", type: "image/svg+xml" },
+      { rel: "mask-icon", url: "/autoinspect-mark.svg", color: "#711d1c" }
     ]
   },
   // App-specific meta
   other: {
     "apple-mobile-web-app-title": "Autoinspect",
     "application-name": "Autoinspect",
-    "msapplication-TileColor": "#2563eb",
-    "msapplication-TileImage": "/car-logo.webp",
-    "theme-color": "#2563eb",
+    "msapplication-TileColor": "#711d1c",
+    "msapplication-TileImage": "/autoinspect-mark.svg",
+    "theme-color": "#711d1c",
     // Enhanced SERP meta tags
     "price": "GBP 54.99",
     "availability": "InStock",
@@ -120,18 +120,21 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         
         {/* Enhanced Favicon Configuration */}
 
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/autoinspect-mark.svg" type="image/svg+xml" />
 
         
         {/* Microsoft Tile Configuration */}
-        <meta name="msapplication-TileImage" content="/car-logo.webp" />
-        <meta name="msapplication-square70x70logo" content="/car-logo.webp" />
-        <meta name="msapplication-square150x150logo" content="/car-logo.webp" />
-        <meta name="msapplication-wide310x150logo" content="/car-logo.webp" />
-        <meta name="msapplication-square310x310logo" content="/car-logo.webp" />
+        <meta name="msapplication-TileImage" content="/autoinspect-mark.svg" />
+        <meta name="msapplication-square70x70logo" content="/autoinspect-mark.svg" />
+        <meta name="msapplication-square150x150logo" content="/autoinspect-mark.svg" />
+        <meta name="msapplication-wide310x150logo" content="/autoinspect-logo.svg" />
+        <meta name="msapplication-square310x310logo" content="/autoinspect-mark.svg" />
         
         <link rel="manifest" href="/manifest.json" />
         <meta name="format-detection" content="telephone=no" />
@@ -146,7 +149,7 @@ export default function RootLayout({ children }) {
               "name": "Autoinspect",
               "alternateName": "Autoinspect",
               "url": "https://autoinspect.site",
-              "logo": "https://autoinspect.site/car-logo.webp",
+              "logo": "https://autoinspect.site/autoinspect-logo.svg",
               "description": "Leading provider of comprehensive vehicle history reports and VIN checks for car buyers worldwide.",
               "sameAs": [
                 "https://twitter.com/autoinspect",

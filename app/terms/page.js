@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Image from 'next/image';
+import { SiteFooter, SiteHeader } from '../components/SiteChrome'
 
 export const metadata = {
   title: "Terms of Service - Autoinspect | Vehicle History Reports",
@@ -12,52 +12,30 @@ export const metadata = {
 
 export default function TermsOfService() {
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <Link href="/" className="flex items-center">
-                <Image
-                  src="/car-logo.webp"
-                  alt="Autoinspect"
-                  width={40}
-                  height={40}
-                  className="mr-3"
-                />
-                <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
-              </Link>
-            </div>
-            <nav className="flex items-center space-x-6">
-              <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">Back to Home</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="legal-page">
+      <SiteHeader />
+      <div className="legal-title-band"><div className="legal-title-inner"><span>Terms of service</span><h1>Terms of Service</h1><p>The terms that apply when you use Autoinspect vehicle history reports.</p></div></div>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="prose prose-lg max-w-none">
-          <h1 className="text-4xl font-bold text-gray-900 mb-8">Terms of Service</h1>
-          
-          <p className="text-gray-600 mb-8">
+      <main className="legal-main">
+        <div className="legal-content">
+          <p className="legal-meta">
             <strong>Effective Date:</strong> November 4, 2025<br/>
             <strong>Last Updated:</strong> November 4, 2025
           </p>
 
-          <div className="space-y-8">
+          <div className="legal-sections">
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">1. Acceptance of Terms</h2>
               <p className="text-gray-700 leading-relaxed">
-                By accessing and using CarCheck&apos;s website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
+                By accessing and using Autoinspect&apos;s website and services, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">2. Description of Service</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                CarCheck provides vehicle history reports based on Vehicle Identification Numbers (VINs). Our service includes:
+                Autoinspect provides vehicle history reports based on Vehicle Identification Numbers (VINs). Our service includes:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
                 <li>Vehicle history reports containing accident history, title information, and other vehicle data</li>
@@ -109,7 +87,7 @@ export default function TermsOfService() {
                   <div className="ml-3">
                     <h3 className="text-sm font-medium text-blue-800">Refund Policy</h3>
                     <div className="mt-2 text-sm text-blue-700">
-                      <p><strong>14-Day Refund Window:</strong> CarCheck offers refunds within 14 days of purchase under specific conditions. Digital service delivery does not automatically disqualify refund eligibility. Please see our detailed Refund Policy for complete terms.</p>
+                      <p><strong>14-Day Refund Window:</strong> Autoinspect offers refunds within 14 days of purchase under specific conditions. Digital service delivery does not automatically disqualify refund eligibility. Please see our detailed Refund Policy for complete terms.</p>
                     </div>
                   </div>
                 </div>
@@ -122,7 +100,7 @@ export default function TermsOfService() {
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">6. Service Delivery and Human Involvement</h2>
               <p className="text-gray-700 leading-relaxed mb-4">
-                CarCheck&apos;s vehicle history reports are generated through a combination of automated systems and human oversight:
+                Autoinspect&apos;s vehicle history reports are generated through a combination of automated systems and human oversight:
               </p>
               <ul className="list-disc pl-6 text-gray-700 space-y-2">
                 <li><strong>Automated Data Processing:</strong> Initial VIN analysis and data compilation is performed by automated systems</li>
@@ -168,7 +146,7 @@ export default function TermsOfService() {
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">9. Intellectual Property</h2>
               <p className="text-gray-700 leading-relaxed">
-                All content, features, and functionality on our website and in our reports are owned by CarCheck and are protected by international copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
+                All content, features, and functionality on our website and in our reports are owned by Autoinspect and are protected by international copyright, trademark, and other intellectual property laws. You may not reproduce, distribute, or create derivative works without our express written permission.
               </p>
             </section>
 
@@ -182,14 +160,14 @@ export default function TermsOfService() {
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">11. Limitation of Liability</h2>
               <p className="text-gray-700 leading-relaxed">
-                In no event shall CarCheck be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or use, arising out of or relating to your use of our service, even if we have been advised of the possibility of such damages. Our total liability shall not exceed the amount paid for the service.
+                In no event shall Autoinspect be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or use, arising out of or relating to your use of our service, even if we have been advised of the possibility of such damages. Our total liability shall not exceed the amount paid for the service.
               </p>
             </section>
 
             <section>
               <h2 className="text-2xl font-semibold text-gray-900 mb-4">12. Indemnification</h2>
               <p className="text-gray-700 leading-relaxed">
-                You agree to indemnify, defend, and hold harmless CarCheck from and against any and all claims, damages, obligations, losses, liabilities, costs, and expenses arising from your use of our service or violation of these terms.
+                You agree to indemnify, defend, and hold harmless Autoinspect from and against any and all claims, damages, obligations, losses, liabilities, costs, and expenses arising from your use of our service or violation of these terms.
               </p>
             </section>
 
@@ -240,13 +218,13 @@ export default function TermsOfService() {
               <div className="bg-blue-50 p-6 rounded-lg mb-6">
                 <div className="text-gray-700">
                   <p className="mb-4"><strong>Service Provider:</strong></p>
-                  <p className="mb-2"><strong>Business Name:</strong> CarCheck</p>
+                  <p className="mb-2"><strong>Business Name:</strong> Autoinspect</p>
                   <p className="mb-2"><strong>Website:</strong> <Link href="https://Autoinspect.com" className="text-blue-600 hover:text-blue-700">https://Autoinspect.com</Link></p>
                   <p className="mb-2"><strong>Email:</strong> support@autoinspect.site</p>
                 </div>
               </div>
               <p className="text-gray-700 leading-relaxed">
-                CarCheck is the company operating the Autoinspect vehicle history report service. All services are provided by CarCheck under these Terms of Service.
+                Autoinspect is the company operating the vehicle history report service. All services are provided by Autoinspect under these Terms of Service.
               </p>
             </section>
 
@@ -266,33 +244,7 @@ export default function TermsOfService() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-4 md:mb-0 flex items-center">
-              <Image
-                src="/car-logo.webp"
-                alt="Autoinspect"
-                width={32}
-                height={32}
-                className="mr-3"
-              />
-              <div className="text-xl font-bold text-blue-400">Autoinspect</div>
-            </div>
-
-            <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
-              <Link href="/privacy" className="hover:text-blue-400 transition-colors">Privacy Policy</Link>
-              <Link href="/terms" className="hover:text-blue-400 transition-colors font-semibold">Terms & Conditions</Link>
-              <Link href="/refund" className="hover:text-blue-400 transition-colors">Refund Policy</Link>
-            </div>
-          </div>
-
-          <div className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-400">
-            © 2015 CarCheck. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

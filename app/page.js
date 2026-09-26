@@ -17,6 +17,7 @@ export default function App() {
   const [vehicleType, setVehicleType] = useState('Car')
   const [showPaypalModal, setShowPaypalModal] = useState(false)
   const [showFreeOrderModal, setShowFreeOrderModal] = useState(false)
+  const [showReportForm, setShowReportForm] = useState(false)
 
   // Pricing Tiers Configuration - Vehicle Types
   const PRICING_TIERS = {
@@ -293,7 +294,113 @@ export default function App() {
     setVinInput(e.target.value)
   }
 
+  const startVehicleCheck = () => {
+    setShowReportForm(true)
+  }
+
   return (
+    <>
+    <div className="vin-home" id="top">
+      <header className="vin-header">
+        <a className="vin-brand" href="#top" aria-label="Autoinspect home">
+          <Image className="vin-logo" style={{ width: 'clamp(136px, 24vw, 174px)', height: 'auto' }} src="/autoinspect-logo.svg" alt="Autoinspect Digital VIN Reports" width={180} height={42} />
+        </a>
+        <nav className="vin-nav" aria-label="Main navigation">
+          <a className="active" href="#top">Home</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#whats-included">What&apos;s Included</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div className="vin-header-actions">
+          <button className="vin-button vin-button-primary vin-header-cta" onClick={scrollToVinInput}>Check a Vehicle</button>
+          <a className="vin-account" href="/about" aria-label="About Autoinspect">♙</a>
+        </div>
+      </header>
+
+      <main>
+        <section className="vin-hero">
+          <div className="vin-hero-copy">
+            <span className="vin-eyebrow"><i /> Real-time vehicle history checks</span>
+            <h1>Know the Story Behind <em>Every Vehicle</em></h1>
+            <p>Get a comprehensive digital vehicle history dossier in minutes. Review accident history, mileage, ownership records, and title information before you buy.</p>
+            <div className="vin-search" id="vin-input-section">
+              <span className="vin-search-mark" aria-hidden="true">GB</span>
+              <input id="vin-input-field" type="text" value={vinInput} onChange={handleVinChange} maxLength={17} placeholder="Enter registration or 17-digit VIN" aria-label="Registration number or VIN" />
+              <button className="vin-button vin-button-primary" onClick={startVehicleCheck}><span aria-hidden="true">⌕</span> Check Vehicle</button>
+            </div>
+            {showReportForm && (
+              <form className="vin-details-form" onSubmit={handleVinSubmit}>
+                <p className="vin-form-heading">A few details for your report</p>
+                <div className="vin-details-grid">
+                  <label>Email address<input type="email" value={emailInput} onChange={(event) => setEmailInput(event.target.value)} placeholder="you@example.com" required /></label>
+                  <label>Model year<input type="text" inputMode="numeric" maxLength={4} value={yearInput} onChange={(event) => setYearInput(event.target.value.replace(/\D/g, '').slice(0, 4))} placeholder="e.g. 2022" required /></label>
+                  <label className="vin-model-field">Vehicle make and model<input type="text" value={carModelInput} onChange={(event) => setCarModelInput(event.target.value)} placeholder="e.g. Volvo XC60" required /></label>
+                </div>
+                <button className="vin-button vin-button-primary vin-submit" type="submit" disabled={isSubmitting || !vinInput.trim() || !emailInput.trim() || yearInput.length !== 4 || !carModelInput.trim()}>
+                  {isSubmitting ? 'Preparing your report...' : `Continue to secure checkout · ${formatPrice(PRICING_TIERS[selectedTier].price)}`}
+                </button>
+                <p className="vin-form-note">Only the registered owner may request a vehicle history report.</p>
+              </form>
+            )}
+            <div className="vin-trust-row"><span><b>✓</b> Verified vehicle data</span><i>·</i><span><b>↯</b> Fast digital delivery</span><i>·</i><span><b>⌑</b> Secure checkout</span></div>
+          </div>
+
+          <div className="vin-hero-preview" aria-label="Sample vehicle report preview">
+            <div className="vin-preview-image">
+              <Image
+                src="/card-stack.webp"
+                alt="Stacked vehicle history reports with mileage, damage, and timeline records"
+                fill
+                priority
+                sizes="(max-width: 900px) 100vw, 50vw"
+              />
+            </div>
+            <div className="vin-preview-card">
+              <div className="vin-preview-title"><div><span className="vin-plate">LN72 XKV</span><div><strong>Mercedes-Benz S500</strong><small>4MATIC Saloon · Petrol Hybrid</small></div></div><span className="vin-clear">✓ 100% CLEAR</span></div>
+              <div className="vin-preview-stats">
+                <div><small>Mileage log</small><strong>28,450 mi</strong><em>Verified history</em></div><div><small>Previous keepers</small><strong>1 Owner</strong><em>Private registered</em></div><div><small>MOT status</small><strong className="vin-green">VALID</strong><em>Expires Nov 2026</em></div><div><small>Finance check</small><strong>NO LIEN</strong><em className="vin-green">No finance found</em></div>
+              </div>
+              <div className="vin-preview-foot"><span><i /> Stolen &amp; write-off checks passed</span><a href="#sample-report">View sample report →</a></div>
+            </div>
+          </div>
+        </section>
+
+        <section className="vin-section vin-steps" id="how-it-works">
+          <div className="vin-section-heading"><span className="vin-kicker">A straightforward process</span><h2>Your vehicle dossier in 3 direct steps</h2><p>Clear, reliable information to help you make a confident decision.</p></div>
+          <div className="vin-step-grid">{[
+            ['⌕', '01', 'Enter vehicle details', 'Add a registration number or 17-digit VIN from the advert or vehicle documents.'],
+            ['◈', '02', 'Secure instant check', 'Complete your one-time purchase through our secure checkout. No recurring subscription.'],
+            ['▤', '03', 'Receive your report', 'Review your digital vehicle history report and keep a copy for your records.']
+          ].map(([icon, number, title, text]) => <article className="vin-step" key={number}><div className="vin-step-top"><span>{icon}</span><b>{number}</b></div><h3>{title}</h3><p>{text}</p><a href="#vin-input-section">Start a check →</a></article>)}</div>
+        </section>
+
+        <section className="vin-section vin-features" id="whats-included">
+          <div className="vin-features-heading"><div><span className="vin-kicker">Comprehensive vehicle history</span><h2>Everything you need before you buy</h2></div><p>Understand the vehicle’s recorded history with key information brought together in one clear report.</p></div>
+          <div className="vin-feature-grid">{[
+            ['▣', 'MOT history & advisories', 'Review test history, recorded failures, and advisory notes.'],['◴', 'Mileage discrepancy checks', 'Compare recorded mileages and identify inconsistencies.'],['♙', 'Keeper history & usage', 'See registered keeper changes and ownership timeline.'],['☷', 'Technical specifications', 'Check key engine, transmission, and emissions details.'],['⌁', 'Market valuation', 'Put the vehicle price in context with market benchmarks.'],['▧', 'Historical salvage images', 'Explore available historic images and vehicle listings.'],['◉', 'Tyre & chassis details', 'Review recorded dimensions and manufacturer specifications.'],['ϟ', 'EV & hybrid information', 'Find available battery, charging, and warranty information.'],['▤', 'Import, export & identity', 'Review available identity markers and import records.']
+          ].map(([icon, title, text]) => <article className="vin-feature" key={title}><span>{icon}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+        </section>
+
+        <section className="vin-section vin-sample" id="sample-report">
+          <div className="vin-sample-copy"><span className="vin-tag">Inside your report</span><h2>One report.<br />Complete vehicle insight.</h2><p>Vehicle details, history checks, and important records presented in one readable report. Know what to ask before you make an offer.</p><ul><li>Chronological MOT and mileage records</li><li>Recorded title, theft, and write-off checks</li><li>Downloadable report for your records</li></ul><button className="vin-button vin-button-primary" onClick={scrollToVinInput}>Check a Vehicle ↗</button></div>
+          <div className="vin-report-window"><div className="vin-window-bar"><span>● ● ●</span><div>⌑ &nbsp; report.autoinspect.site / dossier / LN72XKV</div><span>⇩</span></div><div className="vin-report-content">
+            <div className="vin-report-score"><div><small>VEHICLE HEALTH SUMMARY</small><strong>98<span>/100</span> <i>Clear history</i></strong></div><div><small>VEHICLE IDENTIFICATION</small><b>WDD2230631A914820</b></div></div>
+            <div className="vin-report-checks">{[['Stolen record','CLEAR'],['Outstanding finance','NONE FOUND'],['Write-off record','NOT RECORDED'],['Safety recalls','0 PENDING']].map(([label, result]) => <div key={label}><span>✓</span><small>{label}<b>{result}</b></small></div>)}</div>
+            <h3>Recent MOT &amp; mileage records</h3><div className="vin-mot-row"><span>●</span><div><b>Passed · Official MOT test</b><small>14 Nov 2025 · Test recorded</small></div><strong>28,450 mi</strong></div><div className="vin-mot-row"><span>●</span><div><b>Passed · Official MOT test</b><small>10 Nov 2024 · Test recorded</small></div><strong>18,630 mi</strong></div><div className="vin-report-alert">✓ &nbsp; No outstanding safety recalls found in available records.</div>
+          </div></div>
+        </section>
+
+        <section className="vin-section vin-confidence"><div className="vin-section-heading"><span className="vin-kicker">Clear information, confident decisions</span><h2>Better decisions start with better data</h2></div>
+          <div className="vin-benefit-grid">{[['♢','Secure & reliable','Your details are protected throughout the order process.'],['ϟ','Fast digital access','Get your report online as soon as it is ready.'],['♧','Useful vehicle data','Key history details collected into one report.'],['◎','Easy to understand','Clear labels and straightforward summaries.']].map(([icon,title,text]) => <article key={title}><span>{icon}</span><h3>{title}</h3><p>{text}</p></article>)}</div>
+          <div className="vin-source-bar"><small>INFORMATION SOURCES MAY INCLUDE</small><span>▤ &nbsp; Vehicle records</span><span>♧ &nbsp; Safety notices</span><span>◈ &nbsp; Finance checks</span><span>▣ &nbsp; MOT history</span></div>
+        </section>
+
+        <section className="vin-cta-section" id="faq"><div className="vin-cta-content"><span className="vin-tag">A smarter way to buy</span><h2>Thinking about buying a vehicle?</h2><p>Check its history before you decide. Review recorded damage, mileage, and other important details.</p><div className="vin-cta-actions"><button className="vin-button vin-button-light" onClick={scrollToVinInput}>Check a Vehicle <span>↗</span></button><span>✓ &nbsp; Secure checkout &nbsp;&nbsp; · &nbsp;&nbsp; One-time purchase</span></div></div></section>
+      </main>
+
+      <footer className="vin-footer"><div className="vin-footer-main"><div className="vin-footer-brand"><a className="vin-brand" href="#top"><Image className="vin-logo" style={{ width: 'clamp(150px, 26vw, 190px)', height: 'auto' }} src="/autoinspect-logo.svg" alt="Autoinspect Digital VIN Reports" width={190} height={44} /></a><p>Vehicle history reports to help you make a more informed purchase.</p></div><div className="vin-footer-column"><h2>Platform</h2><a href="#top">Home</a><a href="#how-it-works">How it works</a><a href="#whats-included">What&apos;s included</a><a href="#faq">FAQ</a><a href="/about">Contact</a></div><div className="vin-footer-column"><h2>Legal &amp; trust</h2><a href="/privacy">Privacy policy</a><a href="/terms">Terms &amp; conditions</a><a href="/refund">Refund policy</a></div></div><div className="vin-footer-bottom"><span>© {new Date().getFullYear()} Autoinspect. All rights reserved.</span><span>Vehicle history information for confident decisions</span></div></footer>
+    </div>
+    <div className="legacy-home" aria-hidden="true">
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -302,10 +409,10 @@ export default function App() {
             {/* Logo */}
             <div className="flex items-center">
               <Image
-                src="/car-logo.webp"
+                src="/autoinspect-logo.svg"
                 alt="Autoinspect - Vehicle History Reports"
-                width={40}
-                height={40}
+                width={180}
+                height={42}
                 className="mr-3"
               />
               <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
@@ -445,7 +552,7 @@ export default function App() {
               </div>
 
               {/* VIN Input Form */}
-              <div id="vin-input-section" className="max-w-2xl mx-auto lg:mx-0 bg-white p-8 rounded-2xl shadow-2xl border-2 border-blue-500 animate-scaleIn delay-400">
+              <div id="legacy-vin-input-section" className="max-w-2xl mx-auto lg:mx-0 bg-white p-8 rounded-2xl shadow-2xl border-2 border-blue-500 animate-scaleIn delay-400">
                 <div className="mb-6 text-center">
                   <h3 className="text-2xl font-bold text-gray-900 mb-2">Get Your Report in 4 Steps</h3>
                   <p className="text-gray-600">Join thousands making smarter car buying decisions</p>
@@ -492,7 +599,7 @@ export default function App() {
                         1. Enter Registration Number
                       </label>
                       <input
-                        id="vin-input-field"
+                        id="legacy-vin-input-field"
                         type="text"
                         placeholder="Enter registration number"
                         value={vinInput}
@@ -1930,7 +2037,7 @@ export default function App() {
               <div className="space-y-4">
                 <div>
                   <div className="font-medium text-gray-900">Company Name</div>
-                  <div className="text-gray-700">CarCheck</div>
+                  <div className="text-gray-700">Autoinspect</div>
                 </div>
                 <div>
                   <div className="font-medium text-gray-900">Website</div>
@@ -1950,7 +2057,7 @@ export default function App() {
 
           <div className="bg-blue-50 p-8 rounded-lg">
             <p className="text-gray-700 text-center max-w-4xl mx-auto">
-              CarCheck provides vehicle history reports with a 14-day refund policy under specific qualifying conditions. Reports are usually delivered within few minutes via email. However, we mention a 6–12 hour delivery window to account for any rare delays or technical issues. Please ensure your VIN is entered correctly before purchase. See our refund policy for complete terms and conditions.
+              Autoinspect provides vehicle history reports with a 14-day refund policy under specific qualifying conditions. Reports are usually delivered within few minutes via email. However, we mention a 6–12 hour delivery window to account for any rare delays or technical issues. Please ensure your VIN is entered correctly before purchase. See our refund policy for complete terms and conditions.
             </p>
           </div>
         </div>
@@ -1962,10 +2069,10 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0 flex items-center">
               <Image
-                src="/car-logo.webp"
+                src="/autoinspect-logo.svg"
                 alt="Autoinspect"
-                width={32}
-                height={32}
+                width={190}
+                height={44}
                 className="mr-3"
               />
               <div className="text-2xl font-bold text-blue-400">Autoinspect</div>
@@ -1979,7 +2086,7 @@ export default function App() {
           </div>
 
           <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-            © 2015 CarCheck. All rights reserved. | Vehicle History Reports & VIN Checks
+            © 2015 Autoinspect. All rights reserved. | Vehicle History Reports & VIN Checks
           </div>
         </div>
       </footer>
@@ -2018,6 +2125,8 @@ export default function App() {
         <p>Autoinspect offers comprehensive vehicle history reports, VIN number checks, car history reports, auto history verification, used car reports, vehicle records analysis, accident history checks, mileage verification services, title record checks, automotive history reports, vehicle inspection reports, car buying assistance, and detailed vehicle analysis. Trust Autoinspect for all your vehicle history needs.</p>
         <p>Keywords: Autoinspect, autoinspect.site, vehicle history report, VIN check, car history, auto history report, used car report, vehicle records, accident history, mileage verification, title check, car buying, automotive history, vehicle inspection, vin reports, car reports, auto reports</p>
       </div>
+    </div>
+    </div>
 
       {/* Checkout Modal */}
       {showCheckoutModal && (
@@ -2138,6 +2247,6 @@ export default function App() {
           100% { transform: rotate(360deg); }
         }
       `}</style>
-    </div>
+    </>
   )
 }

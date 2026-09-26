@@ -250,13 +250,11 @@ export default function Pricing() {
             <div className="flex items-center">
               <Link href="/" className="flex items-center">
                 <Image
-                  src="/car-logo.webp"
-                  alt="Autoinspect"
-                  width={40}
-                  height={40}
-                  className="mr-3"
+                  src="/autoinspect-logo.svg"
+                  alt="Autoinspect Digital VIN Reports"
+                  width={180}
+                  height={42}
                 />
-                <div className="text-2xl font-bold text-blue-600">Autoinspect</div>
               </Link>
             </div>
             <nav className="flex items-center space-x-6">
@@ -646,13 +644,11 @@ export default function Pricing() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0 flex items-center">
               <Image
-                src="/car-logo.webp"
-                alt="Autoinspect"
-                width={32}
-                height={32}
-                className="mr-3"
+                src="/autoinspect-logo.svg"
+                alt="Autoinspect Digital VIN Reports"
+                width={190}
+                height={44}
               />
-              <div className="text-xl font-bold text-blue-400">Autoinspect</div>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end gap-6 text-sm">
@@ -663,7 +659,7 @@ export default function Pricing() {
           </div>
 
           <div className="mt-6 pt-6 border-t border-gray-800 text-center text-gray-400">
-            © 2015 CarCheck. All rights reserved.
+            © 2015 Autoinspect. All rights reserved.
           </div>
         </div>
       </footer>

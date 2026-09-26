@@ -52,9 +52,9 @@ export default function PaymentSuccessEmailTemplate({ customerEmail, customerNam
         <a href="mailto:support@autoinspect.site" style={{ color: '#16a34a' }}> car.check.store@gmail.com</a>
       </p>
 
-      <p>Thank you for choosing CarCheck!</p>
+      <p>Thank you for choosing Autoinspect!</p>
       
-      <p>Best regards,<br/>The CarCheck Team</p>
+      <p>Best regards,<br/>The Autoinspect Team</p>
     </div>
   );
 }
